@@ -10,5 +10,10 @@
 		반갑습니다.<br>
 		주문하신 ${food} 나왔습니다.
 		또오세요.</h2>
+		<br>
+		<form action="main2.do" method="get">
+			보낼 메뉴 : <input type="text" name="menu">
+			<input type="submit" value="전송">
+		</form>
 	</body>
 </html>

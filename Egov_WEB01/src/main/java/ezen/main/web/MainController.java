@@ -15,4 +15,11 @@ public class MainController {
 		model.addAttribute("food", "삼계탕");
 		return "main";
 	}
+	
+	@RequestMapping(value="/main2.do")
+	public String main2(HttpServletRequest request, Model model) {
+		String menu = request.getParameter("menu");
+		model.addAttribute("food", menu);
+		return "main2";
+	}
 }
