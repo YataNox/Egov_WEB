@@ -1,13 +1,18 @@
 package ezen.main.web;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class MainController {
 	
 	@RequestMapping(value="/main.do")
-	public String main() {
+	public String main(HttpServletRequest request, Model model) {
+		
+		model.addAttribute("food", "삼계탕");
 		return "main";
 	}
 }
