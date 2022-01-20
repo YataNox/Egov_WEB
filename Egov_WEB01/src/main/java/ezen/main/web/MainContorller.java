@@ -83,6 +83,30 @@ public class MainContorller {
 		    return "main";
 		}
 	}
+	
+	@RequestMapping(value="/logout.do")
+	public String logout(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		
+		session.invalidate();
+		return "redirect:/loginForm.do";
+	}
+	
+	@RequestMapping(value="boardView.do")
+	public String boardView(HttpServletRequest request, Model model) {
+		String num = request.getParameter("num");
+		HttpSession session = request.getSession();
+		
+		MemberVO mvo = (MemberVO)session.getAttribute("loginUser");
+		if(mvo == null) {
+			return "redirect:/loginForm.do";
+		}else {
+			BoardVO bvo = bs.getBoardOne(num);
+			
+			model.addAttribute("board", bvo);
+			return "boardView";
+		}
+	}
 }
 
 

@@ -8,4 +8,6 @@ import ezen.main.dto.BoardVO;
 @Mapper(value="BoardDAO")
 public interface BoardDAO {
 	ArrayList<BoardVO> getBoard();
+
+	BoardVO getBoardOne(String num);
 }

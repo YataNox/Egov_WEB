@@ -6,4 +6,6 @@ import ezen.main.dto.BoardVO;
 
 public interface BoardService {
 	ArrayList<BoardVO> getBoard();
+
+	BoardVO getBoardOne(String num);
 }
