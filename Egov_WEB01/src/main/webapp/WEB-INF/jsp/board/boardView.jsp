@@ -35,16 +35,16 @@
 					<td width="300" align="center">
 						<c:choose>
 							<c:when test="${empty board.imgfilename}">
-								<img src="/images/noname.jpg" width="250">
+								<img src="<c:url value='/images/noname.jpg'/>" width="250">
 							</c:when>
 							<c:otherwise>
-								<img src="/images/${board.imgfilename}" width="250">
+								<img src="<c:url value='/images/${board.imgfilename}'/>" width="250">
 							</c:otherwise>
 						</c:choose>
 					</td>
 				</tr>
 			</table><br><br>
-			<input type="button" value="게시글 리스트" onclick="location.href='main.do'">
+			<input type="button" value="게시글 리스트" onclick="location.href='boardList.do'">
 			<input type="button" value="게시글 수정" onclick="open_win('boardEditForm?num=${board.num}', 'update')">
 			<input type="button" value="게시글 삭제" onclick="open_win('boardDeleteForm?num=${board.num}', 'delete')">
 		</div><br><br>
