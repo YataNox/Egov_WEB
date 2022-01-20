@@ -1,18 +1,26 @@
-create table member(
-	name varchar2(10),
-	userid varchar2(10),
-	userpwd varchar2(10),
-	email varchar2(20),
-	phone varchar2(15),
-	admin number(1) default 0, -- 0은 일반 사용자, 1은 관리자
-	primary key(userid)
-);
+select * from member;
+select * from board;
 
 DROP TABLE member CASCADE CONSTRAINTS;
+CREATE TABLE member
+(
+	id varchar2(20) NOT NULL,
+	pwd varchar2(20) NOT NULL,
+	name varchar2(20) NOT NULL,
+	email varchar2(40) NOT NULL,
+	zip_num varchar2(10) NOT NULL,
+	address varchar2(100) NOT NULL,
+	phone varchar2(20) NOT NULL,
+	useyn char(1) DEFAULT 'y',
+	indate date DEFAULT sysdate,
+	PRIMARY KEY (id)
+);
 
-insert into member values('홍길동', 'scott', '1234', 'gmd@naver.com','010-1234-1234', 0);
-insert into member values('이소미', 'somi', '1234', 'gmd@naver.com','010-1234-1234', 0);
-insert into member values('하상오', 'sang12', '1234', 'h12@naver.com','010-5555-6666', 0);
-insert into member values('김윤승', 'light', '1234', 'yoon1@daum.net','010-9999-1111', 0);
+insert into member(id, pwd, name, zip_num, address, phone, email) values
+('scott', '1234', '홍길동', '133-110', '서울시 성동구 성수동1가 1번지21호', '017-777-7777','acc@abc.com');
 
-select * from member;
+insert into member(id, pwd, name, zip_num, address, phone, email) values
+('one', '1111', '김나리', '133-110', '서울시 성동구 성수동1가 1번지21호', '017-777-7777','acc@abc.com');
+
+insert into member(id, pwd, name, zip_num, address, phone, email)values
+('two', '2222', '김길동', '130-120', '서울시 송파구 잠실2동 리센츠 아파트 201동 505호', '011-123-4567','acc@abc.com');

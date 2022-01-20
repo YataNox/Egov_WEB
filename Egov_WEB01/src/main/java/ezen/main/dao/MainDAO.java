@@ -1,11 +1,12 @@
 package ezen.main.dao;
 
+import java.util.ArrayList;
+
 import egovframework.rte.psl.dataaccess.mapper.Mapper;
 import ezen.main.dto.MemberVO;
 
-@Mapper(value="MainDao")
-public interface MainDao {
-
+@Mapper(value="MainDAO")
+public interface MainDAO {
 	MemberVO getMember(String id);
-	
+
 }

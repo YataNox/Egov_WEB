@@ -4,13 +4,13 @@ import java.sql.Timestamp;
 
 public class MemberVO {
 	private String id;
-	private String pw;
-	private String email;
+	private String pwd;
 	private String name;
-	private String phone;
-	private String useyn;
+	private String email;
 	private String zip_num;
 	private String address;
+	private String phone;
+	private String useyn;
 	private Timestamp indate;
 	
 	public String getId() {
@@ -19,17 +19,11 @@ public class MemberVO {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getPw() {
-		return pw;
+	public String getPwd() {
+		return pwd;
 	}
-	public void setPw(String pw) {
-		this.pw = pw;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
 	}
 	public String getName() {
 		return name;
@@ -37,17 +31,11 @@ public class MemberVO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getPhone() {
-		return phone;
+	public String getEmail() {
+		return email;
 	}
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-	public String getUseyn() {
-		return useyn;
-	}
-	public void setUseyn(String useyn) {
-		this.useyn = useyn;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	public String getZip_num() {
 		return zip_num;
@@ -61,10 +49,24 @@ public class MemberVO {
 	public void setAddress(String address) {
 		this.address = address;
 	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	public String getUseyn() {
+		return useyn;
+	}
+	public void setUseyn(String useyn) {
+		this.useyn = useyn;
+	}
 	public Timestamp getIndate() {
 		return indate;
 	}
 	public void setIndate(Timestamp indate) {
 		this.indate = indate;
 	}
+	
+	
 }
