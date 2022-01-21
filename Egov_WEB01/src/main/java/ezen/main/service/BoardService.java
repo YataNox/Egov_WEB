@@ -8,4 +8,6 @@ public interface BoardService {
 	ArrayList<BoardVO> getBoard();
 
 	BoardVO getBoardOne(String num);
+
+	void insertBoard(BoardVO bvo);
 }

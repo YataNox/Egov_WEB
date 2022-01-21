@@ -21,7 +21,7 @@
 							<input type="button" value="로그아웃" onclick="location.href='logout.do'">
 						</div>
 						<div style="float: right;">
-							<a href="boardWriteForm">게시글 등록</a>
+							<a href="boardWriteForm.do">게시글 등록</a>
 						</div>
 					</td>
 				</tr>

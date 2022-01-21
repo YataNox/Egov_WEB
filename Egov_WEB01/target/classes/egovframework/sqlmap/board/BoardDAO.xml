@@ -11,4 +11,9 @@
    <select id="getBoardOne" statementType="CALLABLE" resultType="ezen.main.dto.BoardVO" >
    		select * from board where num = #{param1}
    </select>
+   
+   <insert id="insertBoard" statementType="CALLABLE" parameterType="ezen.main.dto.BoardVO">
+   		insert into board(num, userid, pass, email, title, content)
+   		values(board_seq.nextVal, #{userid}, #{pass}, #{email}, #{title}, #{content})
+   </insert>
 </mapper>
