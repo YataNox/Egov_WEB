@@ -16,22 +16,22 @@ function loginCheck(){
 
 
 function idCheck(){
-	if( document.frm.id.value==""){
+	if( document.frm.userid.value==""){
 		alert('아이디를 입력하여 주십시오.');
-		document.frm.id.focus();
+		document.frm.userid.focus();
 		return;
 	}
-	var id = document.frm.id.value;
+	var id = document.frm.userid.value;
 	var opt = "toolbar=no, menubar=no, resizable=no, width=450, height=200";
-	window.open("idcheck?id=" + id, "중복체크", opt);
+	window.open("idcheck.do?userid=" + id, "중복체크", opt);
 }
 
 
 
 
 function idok(userid){
-	opener.frm.id.value = userid;
-	opener.frm.re_id.value = userid;
+	opener.frm.userid.value = userid;
+	opener.frm.reid.value = userid;
 	self.close();
 }
 
@@ -39,7 +39,12 @@ function idok(userid){
 
 
 function joinCheck(){
-	if( document.frm.name.value.length==0){  
+	if( document.frm.userid.value.length==0){  
+		alert("아이디를 작성해주세요");
+		frm.userid.focus();
+		return false;
+	}
+	else if( document.frm.name.value.length==0){  
 		alert("이름을 써주세요");
 		frm.name.focus();
 		return false;
@@ -51,9 +56,9 @@ function joinCheck(){
 		alert("암호가 일치하지 않습니다");
 		frm.pw_check.focus();
 		return false;
-	}else if (document.frm.re_id.value != document.frm.id.value) { 
+	}else if (document.frm.reid.value != document.frm.userid.value) { 
 		alert("중복 체크를 하지 않았습니다.");
-		frm.id.focus();
+		frm.userid.focus();
 		return false;
 	} else {
 		return true;

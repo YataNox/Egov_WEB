@@ -9,5 +9,11 @@
 		SELECT * 	FROM MEMBER	where id=#{param1}
 	</select>
 	
-
+	<select id="getID" statementType="CALLABLE" resultType="int">
+		select count(*) from member where id = #{param1}
+	</select>
+	
+	<insert id="insertMember" statementType="CALLABLE" parameterType="ezen.main.dto.MemberVO">
+		insert into member(id, pwd, name, phone, email) values(#{id}, #{pwd}, #{name}, #{phone}, #{email})
+	</insert>
 </mapper>

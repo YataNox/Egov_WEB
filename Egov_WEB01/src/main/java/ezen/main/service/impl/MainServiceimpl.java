@@ -21,5 +21,22 @@ public class MainServiceimpl extends EgovAbstractServiceImpl implements MainServ
 		return mdao.getMember(id);
 	}
 
+	@Override
+	public int getID(String id) {
+		int cnt = mdao.getID(id);
+		int result = 0;
+		if(cnt > 0) {
+			result = 1;
+		}else if(cnt == 0) {
+			result = -1;
+		}
+		return result;
+	}
+
+	@Override
+	public void insertMember(MemberVO mvo) {
+		mdao.insertMember(mvo);
+	}
+
 
 }

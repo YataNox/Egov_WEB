@@ -9,4 +9,8 @@ import ezen.main.dto.MemberVO;
 public interface MainDAO {
 	MemberVO getMember(String id);
 
+	int getID(String id);
+
+	void insertMember(MemberVO mvo);
+
 }

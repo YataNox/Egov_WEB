@@ -107,6 +107,38 @@ public class MainContorller {
 			return "boardView";
 		}
 	}
+	
+	@RequestMapping(value="joinForm.do")
+	public String joinForm(HttpServletRequest request, Model model) {
+		return "member/joinForm";
+	}
+	
+	@RequestMapping(value="idcheck.do")
+	public String idcheck(HttpServletRequest request, Model model) {
+		String id = request.getParameter("userid");
+		
+		int result = ms.getID(id);
+		
+		model.addAttribute("userid", id);
+		model.addAttribute("result", result);
+		
+		return "member/idcheck";
+	}
+	
+	@RequestMapping(value="join.do")
+	public String join(HttpServletRequest request, Model model) {
+		MemberVO mvo = new MemberVO();
+		
+		mvo.setId(request.getParameter("userid"));
+		mvo.setPwd(request.getParameter("pw"));
+		mvo.setName(request.getParameter("name"));
+		mvo.setEmail(request.getParameter("email"));
+		mvo.setPhone(request.getParameter("phone"));
+		
+		ms.insertMember(mvo);
+		
+		return "redirect:/loginForm.do";
+	}
 }
 
 
