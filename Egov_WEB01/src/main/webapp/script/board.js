@@ -123,6 +123,14 @@ function open_win(url, name) {
 				+ " resizable=no, width=500, height=230");
 }
 
+function passCheck(){
+	if(document.frm.pass.value==""){
+		alert("비밀번호를 입력해주세요.");
+		return false;
+	}else{
+		return true;
+	}
+}
 
 
 

@@ -108,6 +108,22 @@ public class MainContorller {
 		}
 	}
 	
+	@RequestMapping(value="boardviewwithoutcount.do")
+	public String boardviewwithoutcount(HttpServletRequest request, Model model) {
+		String num = request.getParameter("num");
+		HttpSession session = request.getSession();
+		
+		MemberVO mvo = (MemberVO)session.getAttribute("loginUser");
+		if(mvo == null) {
+			return "redirect:/loginForm.do";
+		}else {
+			BoardVO bvo = bs.getBoardOne(num);
+			
+			model.addAttribute("board", bvo);
+			return "boardView";
+		}
+	}
+	
 	@RequestMapping(value="joinForm.do")
 	public String joinForm(HttpServletRequest request, Model model) {
 		return "member/joinForm";
@@ -202,6 +218,72 @@ public class MainContorller {
 			return "redirect:/boardList.do";
 		}
 	}
+		
+	@RequestMapping(value="boardEditForm.do")
+	public String boardEditForm(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		MemberVO mvo = (MemberVO)session.getAttribute("loginUser");
+		if(mvo == null) {
+			return "redirect:/loginForm.do";
+		}else {
+			return "boardCheckPass";
+		}
+	}
+	
+	@RequestMapping(value="boardCheckPass.do")
+	public String boardCheckPass(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		MemberVO mvo = (MemberVO)session.getAttribute("loginUser");
+		if(mvo == null) {
+			return "redirect:/loginForm.do";
+		}else {
+			BoardVO bvo = bs.getBoardOne(request.getParameter("num"));
+			String pass = request.getParameter("pass");
+			
+			if(!bvo.getPass().equals(pass)) {
+				model.addAttribute("message", "비밀번호가 일치하지 않습니다.");
+				return "boardCheckPass";
+			}else if(bvo.getPass().equals(pass)) {
+				return "checkSuccess";
+			}else {
+				model.addAttribute("message", "기타 오류로 실패.");
+				return "boardCheckPass";
+			}
+		}
+	}	
+	
+	@RequestMapping(value="boardUpdateForm.do")
+	public String boardUpdateForm(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		MemberVO mvo = (MemberVO)session.getAttribute("loginUser");
+		if(mvo == null) {
+			return "redirect:/loginForm.do";
+		}else {
+			BoardVO bvo = bs.getBoardOne(request.getParameter("num"));
+			model.addAttribute("board", bvo);
+			return "boardUpdate";
+		}
+	}
+	
+	@RequestMapping(value="boardupdate.do")
+	public String boardupdate(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		MemberVO mvo = (MemberVO)session.getAttribute("loginUser");
+		if(mvo == null) {
+			return "redirect:/loginForm.do";
+		}else {
+			BoardVO bvo = bs.getBoardOne(request.getParameter("num"));
+			bvo.setEmail(request.getParameter("email"));
+			bvo.setPass(request.getParameter("pass"));
+			bvo.setTitle(request.getParameter("title"));
+			bvo.setContent(request.getParameter("content"));
+			
+			bs.updateBoard(bvo);
+			
+			return "redirect:/boardView.do?num=" + bvo.getNum();
+		}
+	}
+	
 }
 
 

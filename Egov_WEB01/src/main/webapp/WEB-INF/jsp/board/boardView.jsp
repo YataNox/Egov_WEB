@@ -45,8 +45,8 @@
 				</tr>
 			</table><br><br>
 			<input type="button" value="게시글 리스트" onclick="location.href='boardList.do'">
-			<input type="button" value="게시글 수정" onclick="open_win('boardEditForm?num=${board.num}', 'update')">
-			<input type="button" value="게시글 삭제" onclick="open_win('boardDeleteForm?num=${board.num}', 'delete')">
+			<input type="button" value="게시글 수정" onclick="open_win('boardEditForm.do?num=${board.num}', 'update')">
+			<input type="button" value="게시글 삭제" onclick="open_win('boardDeleteForm.do?num=${board.num}', 'delete')">
 		</div><br><br>
 		
 		<c:set var="now" value="<%=new java.util.Date()%>"></c:set>

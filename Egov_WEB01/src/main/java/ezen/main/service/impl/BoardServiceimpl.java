@@ -30,5 +30,10 @@ public class BoardServiceimpl extends EgovAbstractServiceImpl implements BoardSe
 	public void insertBoard(BoardVO bvo) {
 		bdao.insertBoard(bvo);
 	}
+
+	@Override
+	public void updateBoard(BoardVO bvo) {
+		bdao.updateBoard(bvo);
+	}
 	
 }

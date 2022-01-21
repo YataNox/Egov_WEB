@@ -16,4 +16,8 @@
    		insert into board(num, userid, pass, email, title, content)
    		values(board_seq.nextVal, #{userid}, #{pass}, #{email}, #{title}, #{content})
    </insert>
+   
+   <update id="updateBoard" statementType="CALLABLE" parameterType="ezen.main.dto.BoardVO">
+   		update board set pass=${pass}, email=#{email}, title=#{title}, content=#{content} where userid=#{userid}
+   </update>
 </mapper>
