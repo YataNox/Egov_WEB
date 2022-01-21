@@ -230,6 +230,17 @@ public class MainContorller {
 		}
 	}
 	
+	@RequestMapping(value="boardDeleteForm.do")
+	public String boardDeleteForm(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		MemberVO mvo = (MemberVO)session.getAttribute("loginUser");
+		if(mvo == null) {
+			return "redirect:/loginForm.do";
+		}else {
+			return "boardCheckPass";
+		}
+	}
+	
 	@RequestMapping(value="boardCheckPass.do")
 	public String boardCheckPass(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
@@ -284,6 +295,17 @@ public class MainContorller {
 		}
 	}
 	
+	@RequestMapping(value="boardDelete.do")
+	public String boardDelete(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		MemberVO mvo = (MemberVO)session.getAttribute("loginUser");
+		if(mvo == null) {
+			return "redirect:/loginForm.do";
+		}else {
+			bs.deleteBoard(request.getParameter("num"));
+			return "redirect:/boardList.do";
+		}
+	}
 }
 
 

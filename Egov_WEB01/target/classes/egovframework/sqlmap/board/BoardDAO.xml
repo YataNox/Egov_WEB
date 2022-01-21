@@ -20,4 +20,8 @@
    <update id="updateBoard" statementType="CALLABLE" parameterType="ezen.main.dto.BoardVO">
    		update board set pass=${pass}, email=#{email}, title=#{title}, content=#{content} where userid=#{userid}
    </update>
+   
+   <delete id="deleteBoard" statementType="CALLABLE">
+   		delete from board where num=#{param1}
+   </delete>
 </mapper>
