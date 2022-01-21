@@ -16,6 +16,10 @@ CREATE TABLE member
 	PRIMARY KEY (id)
 );
 
+alter table member modify zip_num varchar2(20) null;
+alter table member modify address varchar2(100) null;
+alter table member modify phone varchar2(20) null;
+
 insert into member(id, pwd, name, zip_num, address, phone, email) values
 ('scott', '1234', '홍길동', '133-110', '서울시 성동구 성수동1가 1번지21호', '017-777-7777','acc@abc.com');
 
