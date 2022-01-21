@@ -13,4 +13,6 @@ public interface MainDAO {
 
 	void insertMember(MemberVO mvo);
 
+	void updateMember(MemberVO mvo);
+
 }

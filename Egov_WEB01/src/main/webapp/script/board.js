@@ -73,13 +73,13 @@ function editCheck(){
 		alert("이름을 써주세요");
 		frm.name.focus();
 		return false;
-	}else if( document.frm.pw.value==""){  
+	}else if( document.frm.pwd.value==""){  
 		alert("암호는 반드시 입력하여야 합니다");
-		frm.pw.focus();
+		frm.pwd.focus();
 		return false;
-	}else if( document.frm.pw.value != document.frm.pw_check.value){
+	}else if( document.frm.pwd.value != document.frm.pwd_check.value){
 		alert("암호가 일치하지 않습니다");
-		frm.pw_check.focus();
+		frm.pwd_check.focus();
 		return false;
 	} else {
 		return true;

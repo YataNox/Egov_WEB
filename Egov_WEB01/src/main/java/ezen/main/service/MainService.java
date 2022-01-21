@@ -8,5 +8,7 @@ public interface MainService {
 	int getID(String id);
 
 	void insertMember(MemberVO mvo);
+
+	void updateMember(MemberVO mvo);
 	
 }

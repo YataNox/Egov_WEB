@@ -38,5 +38,10 @@ public class MainServiceimpl extends EgovAbstractServiceImpl implements MainServ
 		mdao.insertMember(mvo);
 	}
 
+	@Override
+	public void updateMember(MemberVO mvo) {
+		mdao.updateMember(mvo);
+	}
+
 
 }

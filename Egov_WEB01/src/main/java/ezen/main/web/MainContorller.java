@@ -139,6 +139,38 @@ public class MainContorller {
 		
 		return "redirect:/loginForm.do";
 	}
+	
+	@RequestMapping(value="memberEditForm.do")
+	public String memberEditForm(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		MemberVO mvo = (MemberVO)session.getAttribute("loginUser");
+		if(mvo == null) {
+			return "redirect:/loginForm.do";
+		}else {
+			model.addAttribute("loginUser", mvo);
+			return "member/editMemberForm";
+		}
+	}
+	
+	@RequestMapping(value="editMember.do")
+	public String editMember(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		MemberVO mvo = (MemberVO)session.getAttribute("loginUser");
+		if(mvo == null) {
+			return "redirect:/loginForm.do";
+		}else {
+			mvo.setPwd(request.getParameter("pwd"));
+			mvo.setPhone(request.getParameter("phone"));
+			mvo.setName(request.getParameter("name"));
+			mvo.setEmail(request.getParameter("email"));
+			
+			ms.updateMember(mvo);
+			
+			session.setAttribute("loginUser", mvo);
+			return "redirect:/boardList.do";
+		}
+	}
+		
 }
 
 
