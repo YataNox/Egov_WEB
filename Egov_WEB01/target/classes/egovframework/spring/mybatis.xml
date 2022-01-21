@@ -6,7 +6,8 @@
 <configuration>
 
 	<typeAliases>
-
+		<typeAlias type="ezen.main.dto.TransferVO" alias="transferVO"/>
+		<typeAlias type="ezen.main.dto.BoardVO" alias="boardVO"/>
 	</typeAliases>
   
 </configuration>
