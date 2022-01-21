@@ -23,7 +23,7 @@
    </select> -->
    
    <select id="getBoard" statementType="CALLABLE" parameterType="ezen.main.dto.TransferVO">
-      	{CALL selectBoard(#{list, mode=OUT, jdbc=CURSOR, javaType=ResultSet, resultMap=bbsVO})}
+      	{CALL selectBoard(#{list, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=bbsVO})}
    </select>
    
    <select id="getBoardOne" statementType="CALLABLE" resultType="ezen.main.dto.BoardVO" >
