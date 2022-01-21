@@ -1,7 +1,5 @@
 package ezen.main.service.impl;
 
-import java.util.ArrayList;
-
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -9,6 +7,7 @@ import org.springframework.stereotype.Service;
 import egovframework.rte.fdl.cmmn.EgovAbstractServiceImpl;
 import ezen.main.dao.BoardDAO;
 import ezen.main.dto.BoardVO;
+import ezen.main.dto.TransferVO;
 import ezen.main.service.BoardService;
 
 @Service(value="BoardService")
@@ -16,9 +15,16 @@ public class BoardServiceimpl extends EgovAbstractServiceImpl implements BoardSe
 
 	@Resource(name="BoardDAO") BoardDAO bdao;
 
+	//@Override
+	//public ArrayList<BoardVO> getBoard() {
+	//	return bdao.getBoard();
+	//	}
+	
 	@Override
-	public ArrayList<BoardVO> getBoard() {
-		return bdao.getBoard();
+	public TransferVO getBoard() {
+		TransferVO container = new TransferVO();
+		bdao.getBoard(container);
+		return container;
 	}
 
 	@Override

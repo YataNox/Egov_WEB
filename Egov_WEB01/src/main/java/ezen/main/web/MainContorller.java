@@ -1,7 +1,5 @@
 package ezen.main.web;
 
-import java.util.ArrayList;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -13,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import ezen.main.dto.BoardVO;
 import ezen.main.dto.MemberVO;
+import ezen.main.dto.TransferVO;
 import ezen.main.service.BoardService;
 import ezen.main.service.MainService;
 
@@ -77,9 +76,11 @@ public class MainContorller {
 		if(mvo == null) {
 			return "redirect:/loginForm.do";
 		}else {
-			ArrayList<BoardVO> list = bs.getBoard();
+			/* ArrayList<BoardVO> list = bs.getBoard(); */
+			TransferVO con = bs.getBoard();
+			model.addAttribute("boardList", con.getList());
 		    
-			model.addAttribute("boardList", list);
+			/* model.addAttribute("boardList", list); */
 		    return "main";
 		}
 	}

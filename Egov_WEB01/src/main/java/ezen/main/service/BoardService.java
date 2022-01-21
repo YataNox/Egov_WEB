@@ -1,11 +1,11 @@
 package ezen.main.service;
 
-import java.util.ArrayList;
-
 import ezen.main.dto.BoardVO;
+import ezen.main.dto.TransferVO;
 
 public interface BoardService {
-	ArrayList<BoardVO> getBoard();
+	/* ArrayList<BoardVO> getBoard(); */
+	TransferVO getBoard();
 
 	BoardVO getBoardOne(String num);
 

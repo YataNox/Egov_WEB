@@ -18,8 +18,12 @@
 		<result property="writedate" column="WRITEDATE"/>
 	</resultMap>
 
-	<select id="getBoard" statementType="CALLABLE" resultType="ezen.main.dto.BoardVO" >
+	<!-- <select id="getBoard" statementType="CALLABLE" resultType="ezen.main.dto.BoardVO" >
       	select * from board order by num desc
+   </select> -->
+   
+   <select id="getBoard" statementType="CALLABLE" parameterType="ezen.main.dto.TransferVO">
+      	{CALL selectBoard(#{list, mode=OUT, jdbc=CURSOR, javaType=ResultSet, resultMap=bbsVO})}
    </select>
    
    <select id="getBoardOne" statementType="CALLABLE" resultType="ezen.main.dto.BoardVO" >
