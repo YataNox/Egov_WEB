@@ -44,11 +44,15 @@
    </insert> -->
    
    <insert id="insertBoard" statementType="CALLABLE" parameterType="ezen.main.dto.BoardVO">
-   		{CALL insertBoard(#{userid},#{pass},#{title},#{content},#{email})}
+   		{CALL insertBoard(#{userid},#{pass},#{title}, #{email}, #{content})}
    </insert>
    
-   <update id="updateBoard" statementType="CALLABLE" parameterType="ezen.main.dto.BoardVO">
+   <!-- <update id="updateBoard" statementType="CALLABLE" parameterType="ezen.main.dto.BoardVO">
    		update board set pass=${pass}, email=#{email}, title=#{title}, content=#{content} where userid=#{userid}
+   </update> -->
+   
+    <update id="updateBoard" statementType="CALLABLE" parameterType="ezen.main.dto.BoardVO">
+   		{CALL updateBoard(#{userid},#{pass},#{title}, #{email}, #{content})}
    </update>
    
    <delete id="deleteBoard" statementType="CALLABLE">
