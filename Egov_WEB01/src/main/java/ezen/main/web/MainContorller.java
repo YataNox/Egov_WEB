@@ -286,11 +286,10 @@ public class MainContorller {
 		if(mvo == null) {
 			return "redirect:/loginForm.do";
 		}else {
-			TransferVO con = bs.getBoardOne(request.getParameter("num"));
+			TransferVO con = bs.getBoardOneNotReadCount(request.getParameter("num"));
 			/* BoardVO bvo = bs.getBoardOne(request.getParameter("num")); */
 			BoardVO bvo = (BoardVO)con.getList().get(0);
 			String pass = request.getParameter("pass");
-			
 			if(!bvo.getPass().equals(pass)) {
 				model.addAttribute("message", "비밀번호가 일치하지 않습니다.");
 				return "boardCheckPass";
@@ -314,7 +313,7 @@ public class MainContorller {
 			 * BoardVO bvo = bs.getBoardOne(request.getParameter("num"));
 			 * model.addAttribute("board", bvo);
 			 */
-			TransferVO con = bs.getBoardOne(request.getParameter("num"));
+			TransferVO con = bs.getBoardOneNotReadCount(request.getParameter("num"));
 			model.addAttribute("board", con.getList().get(0));
 			return "boardUpdate";
 		}
@@ -327,7 +326,7 @@ public class MainContorller {
 		if(mvo == null) {
 			return "redirect:/loginForm.do";
 		}else {
-			TransferVO con = bs.getBoardOne(request.getParameter("num"));
+			TransferVO con = bs.getBoardOneNotReadCount(request.getParameter("num"));
 			/* BoardVO bvo = bs.getBoardOne(request.getParameter("num")); */
 			BoardVO bvo = (BoardVO)con.getList().get(0);
 			bvo.setEmail(request.getParameter("email"));
