@@ -132,7 +132,9 @@ public class MainContorller {
 			 */
 			
 			TransferVO con = bs.getBoardOne(num);
-			model.addAttribute("board", con.getList().get(0));
+			BoardVO bvo  = (BoardVO)con.getList().get(0);
+			bvo.setReadcount(bvo.getReadcount() + 1); 
+			model.addAttribute("board", bvo);
 			return "boardView";
 		}
 	}
@@ -336,7 +338,7 @@ public class MainContorller {
 			
 			bs.updateBoard(bvo);
 			
-			return "redirect:/boardView.do?num=" + bvo.getNum();
+			return "redirect:/boardviewwithoutcount.do?num=" + bvo.getNum();
 		}
 	}
 	
