@@ -4,9 +4,25 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="ezen.main.dao.MainDAO">
+
+	<resultMap type="ezen.main.dto.MemberVO" id="memVO">
+		<result property="id" column="ID"/>
+		<result property="pwd" column="PWD"/>
+		<result property="name" column="NAME"/>
+		<result property="email" column="EMAIL"/>
+		<result property="zip_num" column="ZIP_NUM"/>
+		<result property="address" column="ADDRESS"/>
+		<result property="phone" column="PHONE"/>
+		<result property="useyn" column="USEYN"/>
+		<result property="indate" column="INDATE"/>
+	</resultMap>
 	
-	<select id="getMember" statementType="CALLABLE" resultType="ezen.main.dto.MemberVO" >
+	<!-- <select id="getMember" statementType="CALLABLE" resultType="ezen.main.dto.MemberVO" >
 		SELECT * 	FROM MEMBER	where id=#{param1}
+	</select> -->
+	
+	<select id="getMember" statementType="CALLABLE" parameterType="ezen.main.dto.TransferVO" >
+		{CALL selectMember(#{id}, #{list, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=memVO})}
 	</select>
 	
 	<select id="getID" statementType="CALLABLE" resultType="int">

@@ -49,12 +49,19 @@ public class MainContorller {
 	public String login(@RequestParam("pw") String pw, HttpServletRequest request, Model model) {
 		String id = request.getParameter("id");
 
-		MemberVO mvo = ms.getMember(id);
+		TransferVO con = ms.getMember(id);
+		if(con.getList().size() == 0) {
+			model.addAttribute("message", "아이디가 없어요.");
+			return "loginForm";
+		}
 		
-		if(mvo == null) {
+		/* MemberVO mvo = ms.getMember(id); */
+		MemberVO mvo = (MemberVO)con.getList().get(0);
+		
+		/*if(mvo == null) {
 			request.setAttribute("message", "아이디가 없어요.");
 			return "loginForm";
-		}else if(mvo.getPwd() == null) {
+		}else*/if(mvo.getPwd() == null) {
 			request.setAttribute("message", "회원정보 오류. 관리자에게 문의하세요.");
 			return "loginForm";
 		}else if(!mvo.getPwd().equals(pw)) {

@@ -1,7 +1,5 @@
 package ezen.main.service.impl;
 
-import java.util.ArrayList;
-
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -9,6 +7,7 @@ import org.springframework.stereotype.Service;
 import egovframework.rte.fdl.cmmn.EgovAbstractServiceImpl;
 import ezen.main.dao.MainDAO;
 import ezen.main.dto.MemberVO;
+import ezen.main.dto.TransferVO;
 import ezen.main.service.MainService;
 
 @Service(value="MainService")
@@ -16,9 +15,17 @@ public class MainServiceimpl extends EgovAbstractServiceImpl implements MainServ
 
 	@Resource(name="MainDAO") MainDAO mdao;
 	
-	@Override
+	/*@Override
 	public MemberVO getMember(String id) {		
 		return mdao.getMember(id);
+	}*/
+	
+	@Override
+	public TransferVO getMember(String id) {
+		TransferVO container = new TransferVO();
+		container.setId(id);
+		mdao.getMember(container);
+		return container;
 	}
 
 	@Override
