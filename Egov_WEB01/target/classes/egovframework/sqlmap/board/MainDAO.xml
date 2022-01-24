@@ -29,8 +29,12 @@
 		select count(*) from member where id = #{param1}
 	</select>
 	
-	<insert id="insertMember" statementType="CALLABLE" parameterType="ezen.main.dto.MemberVO">
+	<!-- <insert id="insertMember" statementType="CALLABLE" parameterType="ezen.main.dto.MemberVO">
 		insert into member(id, pwd, name, phone, email) values(#{id}, #{pwd}, #{name}, #{phone}, #{email})
+	</insert> -->
+	
+	<insert id="insertMember" statementType="CALLABLE" parameterType="ezen.main.dto.MemberVO">
+		{CALL insertMember(#{id}, #{pwd}, #{name}, #{email}, #{phone})}
 	</insert>
 	
 	<update id="updateMember" statementType="CALLABLE" parameterType="ezen.main.dto.MemberVO">

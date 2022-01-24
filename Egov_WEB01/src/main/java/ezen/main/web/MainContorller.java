@@ -164,11 +164,17 @@ public class MainContorller {
 	public String idcheck(HttpServletRequest request, Model model) {
 		String id = request.getParameter("userid");
 		
-		int result = ms.getID(id);
+		/* int result = ms.getID(id); */
+		TransferVO con = ms.getMember(id);
 		
-		model.addAttribute("userid", id);
-		model.addAttribute("result", result);
-		
+		if(con.getList().size()==0) {
+			model.addAttribute("userid", id);
+			model.addAttribute("result", -1);
+		}
+		else {
+			model.addAttribute("userid", id);
+			model.addAttribute("result", 1);
+		}
 		return "member/idcheck";
 	}
 	
