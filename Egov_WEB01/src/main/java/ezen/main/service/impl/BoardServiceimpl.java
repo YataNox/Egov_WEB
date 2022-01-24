@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import egovframework.rte.fdl.cmmn.EgovAbstractServiceImpl;
 import ezen.main.dao.BoardDAO;
 import ezen.main.dto.BoardVO;
+import ezen.main.dto.Paging;
 import ezen.main.dto.TransferVO;
 import ezen.main.service.BoardService;
 
@@ -21,8 +22,10 @@ public class BoardServiceimpl extends EgovAbstractServiceImpl implements BoardSe
 	//	}
 	
 	@Override
-	public TransferVO getBoard() {
+	public TransferVO getBoard(Paging paging) {
 		TransferVO container = new TransferVO();
+		container.setStartNum(paging.getStartNum());
+		container.setEndNum(paging.getEndNum());
 		bdao.getBoard(container);
 		return container;
 	}
@@ -60,6 +63,11 @@ public class BoardServiceimpl extends EgovAbstractServiceImpl implements BoardSe
 		container.setNum(Integer.parseInt(num));
 		bdao.getBoardOneNotReadCount(container);
 		return container;
+	}
+
+	@Override
+	public int getAllCount() {
+		return bdao.getAllCount();
 	}
 	
 }

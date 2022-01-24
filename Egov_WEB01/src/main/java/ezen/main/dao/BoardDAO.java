@@ -19,4 +19,6 @@ public interface BoardDAO {
 	void deleteBoard(String num);
 
 	void getBoardOneNotReadCount(TransferVO container);
+
+	int getAllCount();
 }

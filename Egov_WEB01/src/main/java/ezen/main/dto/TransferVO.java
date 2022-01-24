@@ -6,8 +6,22 @@ import java.util.List;
 public class TransferVO {
 	private String id;
 	private int num;
+	private int startNum;
+	private int endNum;
 	private List list;
 	
+	public int getStartNum() {
+		return startNum;
+	}
+	public void setStartNum(int startNum) {
+		this.startNum = startNum;
+	}
+	public int getEndNum() {
+		return endNum;
+	}
+	public void setEndNum(int endNum) {
+		this.endNum = endNum;
+	}
 	public String getId() {
 		return id;
 	}

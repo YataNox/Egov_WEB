@@ -17,13 +17,30 @@
 		<result property="replycnt" column="REPLYCNT"/>
 		<result property="writedate" column="WRITEDATE"/>
 	</resultMap>
+	
+	<resultMap type="ezen.main.dto.Paging" id="paging">
+		<result property="page" column="PAGE"/>
+		<result property="totalCount" column="TOTALCOUNT"/>
+		<result property="displayRow" column="DISPLAYROW"/>
+		<result property="displayPage" column="DISPLAYPAGE"/>
+		<result property="beginPage" column="BEGINPAGE"/>
+		<result property="endPage" column="ENDPAGE"/>
+		<result property="prev" column="PREV"/>
+		<result property="next" column="NEXT"/>
+		<result property="startNum" column="STARTNUM"/>
+		<result property="endNum" column="ENDNUM"/>
+	</resultMap>
 
 	<!-- <select id="getBoard" statementType="CALLABLE" resultType="ezen.main.dto.BoardVO" >
       	select * from board order by num desc
    </select> -->
    
    <select id="getBoard" statementType="CALLABLE" parameterType="ezen.main.dto.TransferVO">
-      	{ CALL selectBoard(#{list, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=bbsVO})}
+      	{ 
+      		CALL selectBoard(#{list, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=bbsVO},
+      			${startNum}, ${endNum}
+      		)
+      	}
    </select>
    
    <!-- <select id="getBoardOne" statementType="CALLABLE" resultType="ezen.main.dto.BoardVO" >
@@ -66,4 +83,8 @@
    <delete id="deleteBoard" statementType="CALLABLE">
    		delete from board where num=#{param1}
    </delete>
+   
+   <select id="getAllCount" statementType="CALLABLE" resultType="int">
+   		select count(*) from board
+   </select>
 </mapper>

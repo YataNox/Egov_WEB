@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import ezen.main.dto.BoardVO;
 import ezen.main.dto.MemberVO;
+import ezen.main.dto.Paging;
 import ezen.main.dto.TransferVO;
 import ezen.main.service.BoardService;
 import ezen.main.service.MainService;
@@ -83,8 +84,29 @@ public class MainContorller {
 		if(mvo == null) {
 			return "redirect:/loginForm.do";
 		}else {
+int page = 1;
+			
+			if(request.getParameter("page") != null) {
+				page = Integer.parseInt(request.getParameter("page"));
+				session.setAttribute("page", page);
+			}else if(session.getAttribute("page") != null) {
+				page = (int) session.getAttribute("page");
+			}else {
+				page = 1;
+				session.removeAttribute("page");
+			}
+			
+			Paging paging = new Paging();
+			paging.setPage(page);
+			
+			int count = bs.getAllCount();
+			paging.setTotalCount(count);
+			
+			model.addAttribute("paging", paging);
+			model.addAttribute("main");
+			
 			/* ArrayList<BoardVO> list = bs.getBoard(); */
-			TransferVO con = bs.getBoard();
+			TransferVO con = bs.getBoard(paging);
 			model.addAttribute("boardList", con.getList());
 		    
 			/* model.addAttribute("boardList", list); */

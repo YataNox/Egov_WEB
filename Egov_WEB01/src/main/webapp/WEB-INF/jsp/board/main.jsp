@@ -58,7 +58,7 @@
 							<span style="color: red; font-weight: bold;">${index}</span>
 						</c:when>
 						<c:otherwise>
-							<a href="main?page=${index}">${index}</a>
+							<a href="boardList.do?page=${index}">${index}</a>
 						</c:otherwise>
 					</c:choose>
 				</c:forEach>
