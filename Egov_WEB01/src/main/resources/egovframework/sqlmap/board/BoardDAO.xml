@@ -38,9 +38,13 @@
    		}
    </select>
    
-   <insert id="insertBoard" statementType="CALLABLE" parameterType="ezen.main.dto.BoardVO">
+   <!-- <insert id="insertBoard" statementType="CALLABLE" parameterType="ezen.main.dto.BoardVO">
    		insert into board(num, userid, pass, email, title, content)
    		values(board_seq.nextVal, #{userid}, #{pass}, #{email}, #{title}, #{content})
+   </insert> -->
+   
+   <insert id="insertBoard" statementType="CALLABLE" parameterType="ezen.main.dto.BoardVO">
+   		{CALL insertBoard(#{userid},#{pass},#{title},#{content},#{email})}
    </insert>
    
    <update id="updateBoard" statementType="CALLABLE" parameterType="ezen.main.dto.BoardVO">
