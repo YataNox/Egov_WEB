@@ -37,7 +37,11 @@
 		{CALL insertMember(#{id}, #{pwd}, #{name}, #{email}, #{phone})}
 	</insert>
 	
-	<update id="updateMember" statementType="CALLABLE" parameterType="ezen.main.dto.MemberVO">
+	<!-- <update id="updateMember" statementType="CALLABLE" parameterType="ezen.main.dto.MemberVO">
 		update member set pwd = #{pwd}, phone=#{phone}, name=#{name}, email=#{email} where id = #{id}
+	</update> -->
+	
+	<update id="updateMember" statementType="CALLABLE" parameterType="ezen.main.dto.MemberVO">
+		{CALL updateMember(#{id}, #{pwd}, #{name}, #{email}, #{phone})}
 	</update>
 </mapper>
