@@ -67,7 +67,9 @@ public class BoardServiceimpl extends EgovAbstractServiceImpl implements BoardSe
 
 	@Override
 	public int getAllCount() {
-		return bdao.getAllCount();
+		TransferVO con = new TransferVO();
+		bdao.getAllCount(con); 
+		return con.getCount();
 	}
 	
 }

@@ -20,5 +20,5 @@ public interface BoardDAO {
 
 	void getBoardOneNotReadCount(TransferVO container);
 
-	int getAllCount();
+	void getAllCount(TransferVO con);
 }

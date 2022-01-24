@@ -6,10 +6,17 @@ import java.util.List;
 public class TransferVO {
 	private String id;
 	private int num;
+	private int count;
 	private int startNum;
 	private int endNum;
 	private List list;
 	
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
+	}
 	public int getStartNum() {
 		return startNum;
 	}
