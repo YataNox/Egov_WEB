@@ -27,9 +27,16 @@ public class BoardServiceimpl extends EgovAbstractServiceImpl implements BoardSe
 		return container;
 	}
 
-	@Override
+	/*@Override
 	public BoardVO getBoardOne(String num) {
 		return bdao.getBoardOne(num);
+	}*/
+	
+	public TransferVO getBoardOne(String num) {
+		TransferVO container = new TransferVO();
+		container.setNum(Integer.parseInt(num));
+		bdao.getBoardOne(container);
+		return container;
 	}
 
 	@Override

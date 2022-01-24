@@ -9,7 +9,8 @@ public interface BoardDAO {
 	/* ArrayList<BoardVO> getBoard(); */
 	void getBoard(TransferVO container);
 	
-	BoardVO getBoardOne(String num);
+	/* BoardVO getBoardOne(String num); */
+	void getBoardOne(TransferVO container);
 
 	void insertBoard(BoardVO bvo);
 

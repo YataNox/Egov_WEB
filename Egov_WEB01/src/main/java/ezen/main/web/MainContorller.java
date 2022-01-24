@@ -93,7 +93,7 @@ public class MainContorller {
 		return "redirect:/loginForm.do";
 	}
 	
-	@RequestMapping(value="boardView.do")
+	/*@RequestMapping(value="boardView.do")
 	public String boardView(HttpServletRequest request, Model model) {
 		String num = request.getParameter("num");
 		HttpSession session = request.getSession();
@@ -107,6 +107,27 @@ public class MainContorller {
 			model.addAttribute("board", bvo);
 			return "boardView";
 		}
+	}*/
+	
+	@RequestMapping(value="boardView.do")
+	public String boardView(HttpServletRequest request, Model model) {
+		String num = request.getParameter("num");
+		HttpSession session = request.getSession();
+		
+		MemberVO mvo = (MemberVO)session.getAttribute("loginUser");
+		if(mvo == null) {
+			return "redirect:/loginForm.do";
+		}else {
+			/*
+			 * BoardVO bvo = bs.getBoardOne(num);
+			 * 
+			 * model.addAttribute("board", bvo);
+			 */
+			
+			TransferVO con = bs.getBoardOne(num);
+			model.addAttribute("board", con.getList().get(0));
+			return "boardView";
+		}
 	}
 	
 	@RequestMapping(value="boardviewwithoutcount.do")
@@ -118,9 +139,11 @@ public class MainContorller {
 		if(mvo == null) {
 			return "redirect:/loginForm.do";
 		}else {
-			BoardVO bvo = bs.getBoardOne(num);
+			/* BoardVO bvo = bs.getBoardOne(num); */
+			TransferVO con = bs.getBoardOne(num);
 			
-			model.addAttribute("board", bvo);
+			/* model.addAttribute("board", bvo); */
+			model.addAttribute("board", con.getList().get(0));
 			return "boardView";
 		}
 	}
@@ -249,7 +272,9 @@ public class MainContorller {
 		if(mvo == null) {
 			return "redirect:/loginForm.do";
 		}else {
-			BoardVO bvo = bs.getBoardOne(request.getParameter("num"));
+			TransferVO con = bs.getBoardOne(request.getParameter("num"));
+			/* BoardVO bvo = bs.getBoardOne(request.getParameter("num")); */
+			BoardVO bvo = (BoardVO)con.getList().get(0);
 			String pass = request.getParameter("pass");
 			
 			if(!bvo.getPass().equals(pass)) {
@@ -262,7 +287,7 @@ public class MainContorller {
 				return "boardCheckPass";
 			}
 		}
-	}	
+	}
 	
 	@RequestMapping(value="boardUpdateForm.do")
 	public String boardUpdateForm(HttpServletRequest request, Model model) {
@@ -271,8 +296,12 @@ public class MainContorller {
 		if(mvo == null) {
 			return "redirect:/loginForm.do";
 		}else {
-			BoardVO bvo = bs.getBoardOne(request.getParameter("num"));
-			model.addAttribute("board", bvo);
+			/*
+			 * BoardVO bvo = bs.getBoardOne(request.getParameter("num"));
+			 * model.addAttribute("board", bvo);
+			 */
+			TransferVO con = bs.getBoardOne(request.getParameter("num"));
+			model.addAttribute("board", con.getList().get(0));
 			return "boardUpdate";
 		}
 	}
@@ -284,7 +313,9 @@ public class MainContorller {
 		if(mvo == null) {
 			return "redirect:/loginForm.do";
 		}else {
-			BoardVO bvo = bs.getBoardOne(request.getParameter("num"));
+			TransferVO con = bs.getBoardOne(request.getParameter("num"));
+			/* BoardVO bvo = bs.getBoardOne(request.getParameter("num")); */
+			BoardVO bvo = (BoardVO)con.getList().get(0);
 			bvo.setEmail(request.getParameter("email"));
 			bvo.setPass(request.getParameter("pass"));
 			bvo.setTitle(request.getParameter("title"));

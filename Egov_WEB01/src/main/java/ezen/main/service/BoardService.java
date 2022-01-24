@@ -7,7 +7,8 @@ public interface BoardService {
 	/* ArrayList<BoardVO> getBoard(); */
 	TransferVO getBoard();
 
-	BoardVO getBoardOne(String num);
+	/* BoardVO getBoardOne(String num); */
+	TransferVO getBoardOne(String num);
 
 	void insertBoard(BoardVO bvo);
 

@@ -1,6 +1,26 @@
 select * from member;
 select * from board;
 
+create or replace PROCEDURE selectBoard(
+    p_rc OUT    SYS_REFCURSOR)
+IS
+BEGIN
+    OPEN p_rc FOR
+        SELECT * FROM BOARD ORDER BY NUM DESC
+END;
+
+create or replace procedure selectBoardOne(
+    p_num in Board.num%type,
+    p_rc out sys_refcursor)
+is
+begin
+    update Board set ReadCount = readcount +1 where num=p_num;
+    commit;
+
+    open p_rc for
+        select * from board where num=p_num order by num desc;
+end;
+
 DROP TABLE member CASCADE CONSTRAINTS;
 CREATE TABLE member
 (
