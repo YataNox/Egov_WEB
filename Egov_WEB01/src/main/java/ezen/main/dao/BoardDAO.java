@@ -17,4 +17,6 @@ public interface BoardDAO {
 	void updateBoard(BoardVO bvo);
 
 	void deleteBoard(String num);
+
+	void getBoardOneNotReadCount(TransferVO container);
 }

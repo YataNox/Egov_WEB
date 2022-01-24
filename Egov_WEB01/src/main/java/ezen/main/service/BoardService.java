@@ -15,4 +15,6 @@ public interface BoardService {
 	void updateBoard(BoardVO bvo);
 
 	void deleteBoard(String num);
+
+	TransferVO getBoardOneNotReadCount(String num);
 }

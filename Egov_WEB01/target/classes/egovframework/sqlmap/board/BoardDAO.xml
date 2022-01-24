@@ -38,6 +38,14 @@
    		}
    </select>
    
+   <select id="getBoardOneNotReadCount" statementType="CALLABLE" parameterType="ezen.main.dto.TransferVO">
+   		{ CALL getBoardOneNotReadCount(
+   				#{num}, 
+   				#{list, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=bbsVO}
+   			)
+   		}
+   </select>
+   
    <!-- <insert id="insertBoard" statementType="CALLABLE" parameterType="ezen.main.dto.BoardVO">
    		insert into board(num, userid, pass, email, title, content)
    		values(board_seq.nextVal, #{userid}, #{pass}, #{email}, #{title}, #{content})
