@@ -369,7 +369,7 @@ int page = 1;
 			MultipartRequest multi = new MultipartRequest(
 					request, savePath, 5*1024*1024 , "UTF-8", new DefaultFileRenamePolicy());
 				
-			TransferVO con = bs.getBoardOneNotReadCount(request.getParameter("num"));
+			TransferVO con = bs.getBoardOneNotReadCount(multi.getParameter("num"));
 			/* BoardVO bvo = bs.getBoardOne(request.getParameter("num")); */
 			BoardVO bvo = (BoardVO)con.getList().get(0);
 			bvo.setEmail(multi.getParameter("email"));
