@@ -186,9 +186,11 @@ int page = 1;
 		}else {
 			/* BoardVO bvo = bs.getBoardOne(num); */
 			TransferVO con = bs.getBoardOneNotReadCount(num);
+			TransferVO2 con2 = bs.getReplyList(num);
 			
 			/* model.addAttribute("board", bvo); */
 			model.addAttribute("board", con.getList().get(0));
+			model.addAttribute("replyList", con2.getList());
 			return "boardView";
 		}
 	}
