@@ -13,7 +13,7 @@
 		<div id="wrap" align="center">
 			<h1>게시글 등록</h1>
 		</div>
-		<form action="boardWrite.do" name="frm" method="post"><!-- enctype="multipart/form-data" -->
+		<form action="boardWrite.do" name="frm" method="post" enctype="multipart/form-data">
 			<table>
 			<tr>
 				<th>작성자</th>
@@ -35,10 +35,10 @@
 				<th>내용</th>
 				<td><textarea cols="70" rows="15" name="content"></textarea> * 필수</td>
 			</tr>
-			<!-- <tr>
+			<tr>
 				<th>이미지</th>
 				<td><input type="file" name="imgfilename"></td>
-			</tr> -->
+			</tr>
 			</table><br>
 			<input type="submit" value="등록" onclick="return boardCheck()">&nbsp;
 			<input type="reset" value="다시작성"/>

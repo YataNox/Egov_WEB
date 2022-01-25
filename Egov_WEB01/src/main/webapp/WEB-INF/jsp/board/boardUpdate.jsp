@@ -11,7 +11,7 @@
 	<body>
 		<div id="wrap" align="center">
 			<h1>게시글 수정</h1>
-			<form action="boardupdate.do" name="frm" method="post"> <!-- enctype="multipart/form-data" -->
+			<form action="boardupdate.do" name="frm" method="post" enctype="multipart/form-data">
 				<input type="hidden" name="num" value="${board.num}">
 				<table>
 					<tr>
@@ -34,21 +34,21 @@
 						<th>내용</th>
 						<td><textarea cols="70" rows="15" name="content">${board.content}</textarea>*</td>
 					</tr>
-					<%-- <tr>
+					<tr>
 						<th>이미지</th>
 						<td>
 							<c:choose>
 								<c:when test="${empty board.imgfilename}">
-									<img src="upload/noname.jpg" height="50"><br>
+									<img src="<c:url value='/images/noname.jpg'/>" height="70"/><br>
 								</c:when>
 								<c:otherwise>
-									<img src="upload/${board.imgfilename}" height="50"><br>
+									<img src="<c:url value='/images/${board.imgfilename}'/>" height="70"/><br>
 								</c:otherwise>
 							</c:choose>
 						<input type="file" name="imgfilename"><br>파일을 수정하고자 할때만 선택하세요.
 						<input type="hidden" name="oldfilename" value="${board.imgfilename}">
 						</td>
-					</tr> --%>
+					</tr>
 				</table>
 				<br>
 				<input type="submit" value="수정" onClick="return boardCheck()">

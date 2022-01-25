@@ -1,13 +1,21 @@
 package ezen.main.web;
 
+import java.io.IOException;
+
 import javax.annotation.Resource;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import ezen.main.dto.BoardVO;
 import ezen.main.dto.MemberVO;
@@ -18,6 +26,9 @@ import ezen.main.service.MainService;
 
 @Controller
 public class MainContorller {
+	
+	@Autowired
+	ServletContext context;
 	
 	@Resource(name="MainService") MainService ms;
 	@Resource(name="BoardService") BoardService bs;
@@ -259,26 +270,32 @@ int page = 1;
 		}
 	}
 	
-	@RequestMapping(value="boardWrite.do")
-	public String boardWrite(HttpServletRequest request, Model model) {
+	@RequestMapping(value="boardWrite.do", method=RequestMethod.POST)
+	public String boardWrite(HttpServletRequest request, Model model) throws IOException {
 		HttpSession session = request.getSession();
 		MemberVO mvo = (MemberVO)session.getAttribute("loginUser");
 		if(mvo == null) {
 			return "redirect:/loginForm.do";
 		}else {
+			String savePath = context.getRealPath("/images");
 			BoardVO bvo = new BoardVO();
-			bvo.setUserid(request.getParameter("userid"));
-			bvo.setEmail(request.getParameter("email"));
-			bvo.setPass(request.getParameter("pass"));
-			bvo.setTitle(request.getParameter("title"));
-			bvo.setContent(request.getParameter("content"));
+			
+			MultipartRequest multi = new MultipartRequest(
+					request, savePath, 5*1024*1024 , "UTF-8", new DefaultFileRenamePolicy());
+			
+			bvo.setUserid(multi.getParameter("userid"));
+			bvo.setEmail(multi.getParameter("email"));
+			bvo.setPass(multi.getParameter("pass"));
+			bvo.setTitle(multi.getParameter("title"));
+			bvo.setContent(multi.getParameter("content"));
+			bvo.setImgfilename(multi.getFilesystemName("imgfilename"));
 			
 			bs.insertBoard(bvo);
 			
 			return "redirect:/boardList.do";
 		}
 	}
-		
+
 	@RequestMapping(value="boardEditForm.do")
 	public String boardEditForm(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
@@ -342,22 +359,30 @@ int page = 1;
 	}
 	
 	@RequestMapping(value="boardupdate.do")
-	public String boardupdate(HttpServletRequest request, Model model) {
+	public String boardupdate(HttpServletRequest request, Model model) throws IOException {
 		HttpSession session = request.getSession();
 		MemberVO mvo = (MemberVO)session.getAttribute("loginUser");
 		if(mvo == null) {
 			return "redirect:/loginForm.do";
 		}else {
+			String savePath = context.getRealPath("/images");
+			MultipartRequest multi = new MultipartRequest(
+					request, savePath, 5*1024*1024 , "UTF-8", new DefaultFileRenamePolicy());
+				
 			TransferVO con = bs.getBoardOneNotReadCount(request.getParameter("num"));
 			/* BoardVO bvo = bs.getBoardOne(request.getParameter("num")); */
 			BoardVO bvo = (BoardVO)con.getList().get(0);
-			bvo.setEmail(request.getParameter("email"));
-			bvo.setPass(request.getParameter("pass"));
-			bvo.setTitle(request.getParameter("title"));
-			bvo.setContent(request.getParameter("content"));
+			bvo.setEmail(multi.getParameter("email"));
+			bvo.setPass(multi.getParameter("pass"));
+			bvo.setTitle(multi.getParameter("title"));
+			bvo.setContent(multi.getParameter("content"));
+			if(multi.getFilesystemName("imgfilename") == null) {
+				bvo.setImgfilename(multi.getParameter("oldfilename"));
+			}else {
+				bvo.setImgfilename(multi.getFilesystemName("imgfilename"));
+			}
 			
 			bs.updateBoard(bvo);
-			
 			return "redirect:/boardviewwithoutcount.do?num=" + bvo.getNum();
 		}
 	}
