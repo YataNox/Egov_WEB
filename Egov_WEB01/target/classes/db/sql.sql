@@ -52,3 +52,5 @@ insert into member(id, pwd, name, zip_num, address, phone, email)values
 
 insert into reply(num, boardnum, userid, content)
 		values(reply_seq.nextVal, 164, 'adfxcgcx', '댓글 테스트');
+		
+update board set replycnt=replycnt+1 where num=164
