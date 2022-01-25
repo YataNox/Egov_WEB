@@ -73,6 +73,18 @@
    	<insert id="insertBoard" statementType="CALLABLE" parameterType="ezen.main.dto.BoardVO">
    		{CALL insertBoard(#{userid},#{pass},#{title}, #{email}, #{content}, #{imgfilename})}
    	</insert>
+   	
+   	<insert id="insertReply" statementType="CALLABLE" parameterType="ezen.main.dto.ReplyVO">
+   		{CALL insertReply(#{userid},#{boardnum}, #{content})}
+   	</insert>
+   	
+   	<update id="plusRepCount" statementType="CALLABLE">
+   		{CALL plusRepCount(#{param1})}
+   	</update>
+   	
+   	<update id="minusRepCount" statementType="CALLABLE">
+   		{CALL minusRepCount(#{param1})}
+   	</update>
    
    	<!-- <update id="updateBoard" statementType="CALLABLE" parameterType="ezen.main.dto.BoardVO">
    		update board set pass=${pass}, email=#{email}, title=#{title}, content=#{content} where userid=#{userid}
@@ -93,4 +105,8 @@
 	<select id="getAllCount" statementType="CALLABLE" parameterType="ezen.main.dto.TransferVO">
       { CALL getAllCount(#{count, mode=OUT, jdbcType=INTEGER} ) }
    	</select>
+   	
+   	<delete id="deleteReply" statementType="CALLABLE">
+   		{CALL deleteReply(#{param1})}
+   	</delete>
 </mapper>

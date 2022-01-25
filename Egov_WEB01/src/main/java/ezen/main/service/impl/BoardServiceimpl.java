@@ -8,6 +8,7 @@ import egovframework.rte.fdl.cmmn.EgovAbstractServiceImpl;
 import ezen.main.dao.BoardDAO;
 import ezen.main.dto.BoardVO;
 import ezen.main.dto.Paging;
+import ezen.main.dto.ReplyVO;
 import ezen.main.dto.TransferVO;
 import ezen.main.dto.TransferVO2;
 import ezen.main.service.BoardService;
@@ -79,6 +80,18 @@ public class BoardServiceimpl extends EgovAbstractServiceImpl implements BoardSe
 		container.setNum(Integer.parseInt(num));
 		bdao.getReply(container);
 		return container;
+	}
+
+	@Override
+	public void insertReply(ReplyVO rvo) {
+		bdao.insertReply(rvo);
+		bdao.plusRepCount(rvo.getBoardnum());
+	}
+
+	@Override
+	public void deleteReply(int num, int boardnum) {
+		bdao.deleteReply(num);
+		bdao.minusRepCount(boardnum);
 	}
 	
 }

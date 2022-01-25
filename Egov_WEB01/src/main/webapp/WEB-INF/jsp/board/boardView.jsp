@@ -51,7 +51,7 @@
 		
 		<c:set var="now" value="<%=new java.util.Date()%>"></c:set>
 		<div id="wrap" align="center">
-			<form action="addReply" method="post" name="frm2">
+			<form action="addReply.do" method="post" name="frm2">
 				<input type="hidden" name="boardnum" value="${board.num}">
 				<table>
 					<tr>
@@ -75,7 +75,7 @@
 							<td>${reply.content}</td>
 							<td align="center">
 								<c:if test="${reply.userid==loginUser.id}">
-									<input type="button" value="삭제" onclick="location.href='deleteReply?num=${reply.num}&boardnum=${reply.boardnum}'">
+									<input type="button" value="삭제" onclick="location.href='deleteReply.do?num=${reply.num}&boardnum=${reply.boardnum}'">
 								</c:if>&nbsp;
 							</td>
 						</tr>

@@ -2,6 +2,7 @@ package ezen.main.dao;
 
 import egovframework.rte.psl.dataaccess.mapper.Mapper;
 import ezen.main.dto.BoardVO;
+import ezen.main.dto.ReplyVO;
 import ezen.main.dto.TransferVO;
 import ezen.main.dto.TransferVO2;
 
@@ -24,4 +25,12 @@ public interface BoardDAO {
 	void getAllCount(TransferVO con);
 
 	void getReply(TransferVO2 container);
+
+	void insertReply(ReplyVO rvo);
+
+	void plusRepCount(int boardnum);
+
+	void deleteReply(int num);
+
+	void minusRepCount(int boardnum);
 }

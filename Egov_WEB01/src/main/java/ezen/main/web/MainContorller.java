@@ -20,6 +20,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import ezen.main.dto.BoardVO;
 import ezen.main.dto.MemberVO;
 import ezen.main.dto.Paging;
+import ezen.main.dto.ReplyVO;
 import ezen.main.dto.TransferVO;
 import ezen.main.dto.TransferVO2;
 import ezen.main.service.BoardService;
@@ -402,6 +403,38 @@ int page = 1;
 		}else {
 			bs.deleteBoard(request.getParameter("num"));
 			return "redirect:/boardList.do";
+		}
+	}
+	
+	@RequestMapping(value="addReply.do", method=RequestMethod.POST)
+	public String addReply(HttpServletRequest request, Model model){
+		HttpSession session = request.getSession();
+		MemberVO mvo = (MemberVO)session.getAttribute("loginUser");
+		if(mvo == null) {
+			return "redirect:/loginForm.do";
+		}else {
+			ReplyVO rvo = new ReplyVO();
+			rvo.setUserid(mvo.getId());
+			rvo.setBoardnum(Integer.parseInt(request.getParameter("boardnum")));
+			rvo.setContent(request.getParameter("reply"));
+			
+			bs.insertReply(rvo);
+			return "redirect:/boardviewwithoutcount.do?num=" + rvo.getBoardnum();
+		}
+	}
+	
+	@RequestMapping(value="deleteReply.do")
+	public String deleteReply(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		MemberVO mvo = (MemberVO)session.getAttribute("loginUser");
+		if(mvo == null) {
+			return "redirect:/loginForm.do";
+		}else {
+			int num = Integer.parseInt(request.getParameter("num"));
+			int boardnum = Integer.parseInt(request.getParameter("boardnum"));
+			bs.deleteReply(num, boardnum);
+			
+			return "redirect:/boardviewwithoutcount.do?num=" + boardnum;
 		}
 	}
 }
