@@ -18,17 +18,12 @@
 		<result property="writedate" column="WRITEDATE"/>
 	</resultMap>
 	
-	<resultMap type="ezen.main.dto.Paging" id="paging">
-		<result property="page" column="PAGE"/>
-		<result property="totalCount" column="TOTALCOUNT"/>
-		<result property="displayRow" column="DISPLAYROW"/>
-		<result property="displayPage" column="DISPLAYPAGE"/>
-		<result property="beginPage" column="BEGINPAGE"/>
-		<result property="endPage" column="ENDPAGE"/>
-		<result property="prev" column="PREV"/>
-		<result property="next" column="NEXT"/>
-		<result property="startNum" column="STARTNUM"/>
-		<result property="endNum" column="ENDNUM"/>
+	<resultMap type="ezen.main.dto.ReplyVO" id="repVO">
+		<result property="num" column="NUM"/>
+		<result property="boardnum" column="BOARDNUM"/>
+		<result property="userid" column="USERID"/>
+		<result property="writedate" column="WRITEDATE"/>
+		<result property="content" column="CONTENT"/>
 	</resultMap>
 
 	<!-- <select id="getBoard" statementType="CALLABLE" resultType="ezen.main.dto.BoardVO" >
@@ -40,6 +35,13 @@
       		CALL selectBoard(#{list, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=bbsVO},
       			${startNum}, ${endNum}
       		)
+      	}
+   </select>
+   
+   <select id="getReply" statementType="CALLABLE" parameterType="ezen.main.dto.TransferVO2">
+      	{ 
+      		CALL selectReply(#{list, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=repVO},
+      		${num})
       	}
    </select>
    

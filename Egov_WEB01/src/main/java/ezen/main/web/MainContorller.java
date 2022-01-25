@@ -21,6 +21,7 @@ import ezen.main.dto.BoardVO;
 import ezen.main.dto.MemberVO;
 import ezen.main.dto.Paging;
 import ezen.main.dto.TransferVO;
+import ezen.main.dto.TransferVO2;
 import ezen.main.service.BoardService;
 import ezen.main.service.MainService;
 
@@ -166,7 +167,10 @@ int page = 1;
 			
 			TransferVO con = bs.getBoardOne(num);
 			BoardVO bvo  = (BoardVO)con.getList().get(0);
+			
+			TransferVO2 con2 = bs.getReplyList(num);
 			model.addAttribute("board", bvo);
+			model.addAttribute("replyList", con2.getList());
 			return "boardView";
 		}
 	}

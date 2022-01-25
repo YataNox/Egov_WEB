@@ -3,6 +3,7 @@ package ezen.main.dao;
 import egovframework.rte.psl.dataaccess.mapper.Mapper;
 import ezen.main.dto.BoardVO;
 import ezen.main.dto.TransferVO;
+import ezen.main.dto.TransferVO2;
 
 @Mapper(value="BoardDAO")
 public interface BoardDAO {
@@ -21,4 +22,6 @@ public interface BoardDAO {
 	void getBoardOneNotReadCount(TransferVO container);
 
 	void getAllCount(TransferVO con);
+
+	void getReply(TransferVO2 container);
 }

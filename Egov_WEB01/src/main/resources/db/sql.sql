@@ -1,5 +1,6 @@
 select * from member;
 select * from board;
+select * from REPLY;
 
 create or replace PROCEDURE selectBoard(
     p_rc OUT    SYS_REFCURSOR)
@@ -48,3 +49,6 @@ insert into member(id, pwd, name, zip_num, address, phone, email) values
 
 insert into member(id, pwd, name, zip_num, address, phone, email)values
 ('two', '2222', '김길동', '130-120', '서울시 송파구 잠실2동 리센츠 아파트 201동 505호', '011-123-4567','acc@abc.com');
+
+insert into reply(num, boardnum, userid, content)
+		values(reply_seq.nextVal, 164, 'adfxcgcx', '댓글 테스트');

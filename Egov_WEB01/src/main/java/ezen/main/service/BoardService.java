@@ -3,6 +3,7 @@ package ezen.main.service;
 import ezen.main.dto.BoardVO;
 import ezen.main.dto.Paging;
 import ezen.main.dto.TransferVO;
+import ezen.main.dto.TransferVO2;
 
 public interface BoardService {
 	/* ArrayList<BoardVO> getBoard(); */
@@ -20,4 +21,6 @@ public interface BoardService {
 	TransferVO getBoardOneNotReadCount(String num);
 
 	int getAllCount();
+
+	TransferVO2 getReplyList(String num);
 }

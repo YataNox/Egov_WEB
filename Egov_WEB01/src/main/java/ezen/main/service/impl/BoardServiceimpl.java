@@ -9,6 +9,7 @@ import ezen.main.dao.BoardDAO;
 import ezen.main.dto.BoardVO;
 import ezen.main.dto.Paging;
 import ezen.main.dto.TransferVO;
+import ezen.main.dto.TransferVO2;
 import ezen.main.service.BoardService;
 
 @Service(value="BoardService")
@@ -70,6 +71,14 @@ public class BoardServiceimpl extends EgovAbstractServiceImpl implements BoardSe
 		TransferVO con = new TransferVO();
 		bdao.getAllCount(con); 
 		return con.getCount();
+	}
+
+	@Override
+	public TransferVO2 getReplyList(String num) {
+		TransferVO2 container = new TransferVO2();
+		container.setNum(Integer.parseInt(num));
+		bdao.getReply(container);
+		return container;
 	}
 	
 }
