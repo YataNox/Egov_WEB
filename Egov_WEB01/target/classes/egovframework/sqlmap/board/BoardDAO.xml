@@ -80,8 +80,12 @@
    		{CALL updateBoard(#{userid},#{pass},#{title}, #{email}, #{content}, #{imgfilename})}
    	</update>
    
-   	<delete id="deleteBoard" statementType="CALLABLE">
+   	<!-- <delete id="deleteBoard" statementType="CALLABLE">
    		delete from board where num=#{param1}
+   	</delete> -->
+   	
+   	<delete id="deleteBoard" statementType="CALLABLE">
+   		{CALL deleteBoard(#{param1})}
    	</delete>
    	
 	<select id="getAllCount" statementType="CALLABLE" parameterType="ezen.main.dto.TransferVO">
