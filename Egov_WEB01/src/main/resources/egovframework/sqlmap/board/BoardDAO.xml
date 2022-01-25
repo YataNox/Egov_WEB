@@ -77,7 +77,7 @@
    	</update> -->
    
     <update id="updateBoard" statementType="CALLABLE" parameterType="ezen.main.dto.BoardVO">
-   		{CALL updateBoard(#{userid},#{pass},#{title}, #{email}, #{content}, #{imgfilename})}
+   		{CALL updateBoard(#{userid},#{pass},#{title}, #{email}, #{content}, #{imgfilename}, ${num})}
    	</update>
    
    	<!-- <delete id="deleteBoard" statementType="CALLABLE">
