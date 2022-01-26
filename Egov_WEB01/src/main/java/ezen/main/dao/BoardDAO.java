@@ -15,7 +15,7 @@ public interface BoardDAO {
 	 void getBoard(HashMap<String, Object> map); 
 	
 	/* BoardVO getBoardOne(String num); */
-	void getBoardOne(TransferVO container);
+	void getBoardOne(HashMap<String, Object> paramMap);
 
 	void insertBoard(BoardVO bvo);
 
@@ -27,7 +27,8 @@ public interface BoardDAO {
 
 	void getAllCount(TransferVO con);
 
-	void getReply(TransferVO2 container);
+	/* void getReply(TransferVO2 container); */
+	void getReply(HashMap<String, Object> paramMap2);
 
 	void insertReply(ReplyVO rvo);
 

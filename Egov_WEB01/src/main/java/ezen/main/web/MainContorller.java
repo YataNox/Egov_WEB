@@ -119,6 +119,8 @@ public class MainContorller {
 //			model.addAttribute("paging", paging);
 //			model.addAttribute("main");
 //-------------------------------------------------------------------------------------
+			// TransferVO를 사용할 때는 멤버변수를 만들어야만 사용할 수 있는 제약이 있다면,
+			// HashMap은 자유로운 key값 활용으로 제약없이 사용이 가능하다는 차이가 있습니다.
 			HashMap<String, Object> paramMap = new HashMap<String, Object>();
 			paramMap.put("ref_cursor", null);
 			
@@ -171,13 +173,26 @@ public class MainContorller {
 			 * 
 			 * model.addAttribute("board", bvo);
 			 */
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("ref_cursor", null);
+			paramMap.put("num", num);
 			
-			TransferVO con = bs.getBoardOne(num);
-			BoardVO bvo  = (BoardVO)con.getList().get(0);
+			bs.getBoardOne(paramMap);
 			
-			TransferVO2 con2 = bs.getReplyList(num);
-			model.addAttribute("board", bvo);
-			model.addAttribute("replyList", con2.getList());
+			ArrayList<HashMap<String, Object>> list = (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
+			// BoardVO bvo  = (BoardVO)con.getList().get(0);
+			
+			HashMap<String, Object> paramMap2 = new HashMap<String, Object>();
+			paramMap2.put("ref_cursor", null);
+			paramMap2.put("num", num);
+			
+			bs.getReplyList(paramMap2);
+			
+			ArrayList<HashMap<String, Object>> list2 = (ArrayList<HashMap<String, Object>>) paramMap2.get("ref_cursor");
+			//TransferVO2 con2 = bs.getReplyList(num);
+			model.addAttribute("board", list);
+			model.addAttribute("replyList", list2);
+			//model.addAttribute("replyList", con2.getList());
 			return "boardView";
 		}
 	}
@@ -193,11 +208,16 @@ public class MainContorller {
 		}else {
 			/* BoardVO bvo = bs.getBoardOne(num); */
 			TransferVO con = bs.getBoardOneNotReadCount(num);
-			TransferVO2 con2 = bs.getReplyList(num);
+			HashMap<String, Object> paramMap2 = new HashMap<String, Object>();
+			paramMap2.put("ref_cursor", null);
+			paramMap2.put("num", num);
 			
+			bs.getReplyList(paramMap2);
+			
+			ArrayList<HashMap<String, Object>> list2 = (ArrayList<HashMap<String, Object>>) paramMap2.get("ref_cursor");
 			/* model.addAttribute("board", bvo); */
 			model.addAttribute("board", con.getList().get(0));
-			model.addAttribute("replyList", con2.getList());
+			model.addAttribute("replyList", list2);
 			return "boardView";
 		}
 	}

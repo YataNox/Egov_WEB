@@ -13,7 +13,8 @@ public interface BoardService {
 	void getBoard(HashMap<String, Object> map);
 
 	/* BoardVO getBoardOne(String num); */
-	TransferVO getBoardOne(String num);
+	/* TransferVO getBoardOne(String num); */
+	void getBoardOne(HashMap<String, Object> paramMap);
 
 	void insertBoard(BoardVO bvo);
 
@@ -25,7 +26,8 @@ public interface BoardService {
 
 	int getAllCount();
 
-	TransferVO2 getReplyList(String num);
+	/* TransferVO2 getReplyList(String num); */
+	void getReplyList(HashMap<String, Object> paramMap2);
 
 	void insertReply(ReplyVO rvo);
 

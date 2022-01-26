@@ -43,12 +43,18 @@ public class BoardServiceimpl extends EgovAbstractServiceImpl implements BoardSe
 		return bdao.getBoardOne(num);
 	}*/
 	
-	public TransferVO getBoardOne(String num) {
+	/*public TransferVO getBoardOne(String num) {
 		TransferVO container = new TransferVO();
 		container.setNum(Integer.parseInt(num));
 		bdao.getBoardOne(container);
 		return container;
-	}
+	}*/
+	
+	
+	 public void getBoardOne(HashMap<String, Object> paramMap) 
+	 {
+		 bdao.getBoardOne(paramMap); 
+	 }
 
 	@Override
 	public void insertBoard(BoardVO bvo) {
@@ -80,12 +86,17 @@ public class BoardServiceimpl extends EgovAbstractServiceImpl implements BoardSe
 		return con.getCount();
 	}
 
-	@Override
+	/*@Override
 	public TransferVO2 getReplyList(String num) {
 		TransferVO2 container = new TransferVO2();
 		container.setNum(Integer.parseInt(num));
 		bdao.getReply(container);
 		return container;
+	}*/
+	
+	@Override
+	public void getReplyList(HashMap<String, Object> paramMap2) {
+		bdao.getReply(paramMap2);
 	}
 
 	@Override

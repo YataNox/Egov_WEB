@@ -57,11 +57,17 @@
    		select * from board where num = #{param1}
    </select> -->
    
-   <select id="getBoardOne" statementType="CALLABLE" parameterType="ezen.main.dto.TransferVO">
+   <!-- <select id="getBoardOne" statementType="CALLABLE" parameterType="ezen.main.dto.TransferVO">
    		{ CALL selectBoardOne(
    				#{num}, 
    				#{list, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=bbsVO}
    			)
+   		}
+   </select> -->
+   
+   <select id="getBoardOne" statementType="CALLABLE" parameterType="ezen.main.dto.TransferVO">
+   		{ 
+   			CALL selectBoard(#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=boardMap})
    		}
    </select>
    

@@ -15,44 +15,44 @@
 			<table>
 				<tr>
 					<th>작성자</th>
-					<td>${board.userid}</td>
+					<td>${board[0].USERID}</td>
 					<th>이메일</th>
-					<td>${board.email}</td>
+					<td>${board[0].EMAIL}</td>
 				</tr>
 				<tr>
 					<th>작성일</th>
-					<td><fmt:formatDate value="${board.writedate}"/></td>
+					<td><fmt:formatDate value="${board[0].WRITEDATE}"/></td>
 					<th>조회수</th>
-					<td>${board.readcount}</td>
+					<td>${board[0].READCOUNT}</td>
 				</tr>
 				<tr>
 					<th>제목</th>
-					<td colspan="3">${board.title}</td>
+					<td colspan="3">${board[0].TITLE}</td>
 				</tr>
 				<tr>
 					<th>내용</th>
-					<td colspan="2">${board.content}</td>
+					<td colspan="2">${board[0].CONTENT}</td>
 					<td width="300" align="center">
 						<c:choose>
-							<c:when test="${empty board.imgfilename}">
+							<c:when test="${empty board[0].IMGFILENAME}">
 								<img src="<c:url value='/images/noname.jpg'/>" width="250">
 							</c:when>
 							<c:otherwise>
-								<img src="<c:url value='/images/${board.imgfilename}'/>" width="250">
+								<img src="<c:url value='/images/${board[0].IMGFILENAME}'/>" width="250">
 							</c:otherwise>
 						</c:choose>
 					</td>
 				</tr>
 			</table><br><br>
 			<input type="button" value="게시글 리스트" onclick="location.href='boardList.do'">
-			<input type="button" value="게시글 수정" onclick="open_win('boardEditForm.do?num=${board.num}', 'update')">
-			<input type="button" value="게시글 삭제" onclick="open_win('boardDeleteForm.do?num=${board.num}', 'delete')">
+			<input type="button" value="게시글 수정" onclick="open_win('boardEditForm.do?num=${board[0].NUM}', 'update')">
+			<input type="button" value="게시글 삭제" onclick="open_win('boardDeleteForm.do?num=${board[0].NUM}', 'delete')">
 		</div><br><br>
 		
 		<c:set var="now" value="<%=new java.util.Date()%>"></c:set>
 		<div id="wrap" align="center">
 			<form action="addReply.do" method="post" name="frm2">
-				<input type="hidden" name="boardnum" value="${board.num}">
+				<input type="hidden" name="boardnum" value="${board[0].NUM}">
 				<table>
 					<tr>
 						<th>작성자</th>
@@ -68,14 +68,14 @@
 					</tr>
 					<c:forEach var="reply" items="${replyList}">
 						<tr>
-							<td align="center">${reply.userid}</td>
+							<td align="center">${reply.USERID}</td>
 							<td align="center">
-								<fmt:formatDate value="${reply.writedate}" pattern="MM/dd HH:mm"/>
+								<fmt:formatDate value="${reply.WRITEDATE}" pattern="MM/dd HH:mm"/>
 							</td>
-							<td>${reply.content}</td>
+							<td>${reply.CONTENT}</td>
 							<td align="center">
-								<c:if test="${reply.userid==loginUser.id}">
-									<input type="button" value="삭제" onclick="location.href='deleteReply.do?num=${reply.num}&boardnum=${reply.boardnum}'">
+								<c:if test="${reply.USERID==loginUser.id}">
+									<input type="button" value="삭제" onclick="location.href='deleteReply.do?num=${reply.NUM}&boardnum=${reply.BOARDNUM}'">
 								</c:if>&nbsp;
 							</td>
 						</tr>
