@@ -99,7 +99,7 @@
    		values(board_seq.nextVal, #{userid}, #{pass}, #{email}, #{title}, #{content})
    	</insert> -->
    
-   	<insert id="insertBoard" statementType="CALLABLE" parameterType="ezen.main.dto.BoardVO">
+   	<insert id="insertBoard" statementType="CALLABLE" parameterType="java.util.HashMap">
    		{CALL insertBoard(#{userid},#{pass},#{title}, #{email}, #{content}, #{imgfilename})}
    	</insert>
    	
@@ -119,7 +119,7 @@
    		update board set pass=${pass}, email=#{email}, title=#{title}, content=#{content} where userid=#{userid}
    	</update> -->
    
-    <update id="updateBoard" statementType="CALLABLE" parameterType="ezen.main.dto.BoardVO">
+    <update id="updateBoard" statementType="CALLABLE" parameterType="java.util.HashMap">
    		{CALL updateBoard(#{userid},#{pass},#{title}, #{email}, #{content}, #{imgfilename}, ${num})}
    	</update>
    

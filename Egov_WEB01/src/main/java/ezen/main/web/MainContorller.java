@@ -320,19 +320,19 @@ public class MainContorller {
 			return "redirect:/loginForm.do";
 		}else {
 			String savePath = context.getRealPath("/images");
-			BoardVO bvo = new BoardVO();
 			
 			MultipartRequest multi = new MultipartRequest(
 					request, savePath, 5*1024*1024 , "UTF-8", new DefaultFileRenamePolicy());
 			
-			bvo.setUserid(multi.getParameter("userid"));
-			bvo.setEmail(multi.getParameter("email"));
-			bvo.setPass(multi.getParameter("pass"));
-			bvo.setTitle(multi.getParameter("title"));
-			bvo.setContent(multi.getParameter("content"));
-			bvo.setImgfilename(multi.getFilesystemName("imgfilename"));
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("pass", multi.getParameter("pass"));
+			paramMap.put("userid", multi.getParameter("userid"));
+			paramMap.put("title", multi.getParameter("title"));
+			paramMap.put("content", multi.getParameter("content"));
+			paramMap.put("email", multi.getParameter("email"));
+			paramMap.put("imgfilename", multi.getFilesystemName("imgfilename"));
 			
-			bs.insertBoard(bvo);
+			bs.insertBoard(paramMap);
 			
 			return "redirect:/boardList.do";
 		}
@@ -423,28 +423,23 @@ public class MainContorller {
 			String savePath = context.getRealPath("/images");
 			MultipartRequest multi = new MultipartRequest(
 					request, savePath, 5*1024*1024 , "UTF-8", new DefaultFileRenamePolicy());
-				
+			int num = Integer.parseInt(multi.getParameter("num"));
+			
 			HashMap<String, Object> paramMap = new HashMap<String, Object>();
-			paramMap.put("ref_cursor", null);
-			paramMap.put("num", request.getParameter("num"));
-			
-			bs.getBoardOneNotReadCount(paramMap);
-			
-			ArrayList<HashMap<String, Object>> list = (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
-			/* BoardVO bvo = bs.getBoardOne(request.getParameter("num")); */
-			BoardVO bvo = (BoardVO)list.get(0).values();
-			bvo.setEmail(multi.getParameter("email"));
-			bvo.setPass(multi.getParameter("pass"));
-			bvo.setTitle(multi.getParameter("title"));
-			bvo.setContent(multi.getParameter("content"));
+			paramMap.put("pass", multi.getParameter("pass"));
+			paramMap.put("userid", multi.getParameter("userid"));
+			paramMap.put("title", multi.getParameter("title"));
+			paramMap.put("content", multi.getParameter("content"));
+			paramMap.put("email", multi.getParameter("email"));
+			paramMap.put("num", multi.getParameter("num"));
 			if(multi.getFilesystemName("imgfilename") == null) {
-				bvo.setImgfilename(multi.getParameter("oldfilename"));
+				paramMap.put("imgfilename", multi.getParameter("oldfilename"));
 			}else {
-				bvo.setImgfilename(multi.getFilesystemName("imgfilename"));
+				paramMap.put("imgfilename", multi.getFilesystemName("imgfilename"));
 			}
 			
-			bs.updateBoard(bvo);
-			return "redirect:/boardviewwithoutcount.do?num=" + bvo.getNum();
+			bs.updateBoard(paramMap);
+			return "redirect:/boardviewwithoutcount.do?num=" + num;
 		}
 	}
 	

@@ -16,9 +16,11 @@ public interface BoardService {
 	/* TransferVO getBoardOne(String num); */
 	void getBoardOne(HashMap<String, Object> paramMap);
 
-	void insertBoard(BoardVO bvo);
+	/* void insertBoard(BoardVO bvo); */
+	void insertBoard(HashMap<String, Object> paramMap);
 
-	void updateBoard(BoardVO bvo);
+	/* void updateBoard(BoardVO bvo); */
+	void updateBoard(HashMap<String, Object> paramMap);
 
 	void deleteBoard(String num);
 

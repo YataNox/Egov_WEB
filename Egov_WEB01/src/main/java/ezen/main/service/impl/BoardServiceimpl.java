@@ -56,14 +56,23 @@ public class BoardServiceimpl extends EgovAbstractServiceImpl implements BoardSe
 		 bdao.getBoardOne(paramMap); 
 	 }
 
-	@Override
+	/*@Override
 	public void insertBoard(BoardVO bvo) {
 		bdao.insertBoard(bvo);
-	}
+	}*/
+	 
+	public void insertBoard(HashMap<String, Object> paramMap) {
+		bdao.insertBoard(paramMap);
+	} 
 
-	@Override
+	/*@Override
 	public void updateBoard(BoardVO bvo) {
 		bdao.updateBoard(bvo);
+	}*/
+	
+	@Override
+	public void updateBoard(HashMap<String, Object> paramMap){
+		bdao.updateBoard(paramMap);
 	}
 
 	@Override
