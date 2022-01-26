@@ -79,10 +79,17 @@
    		}
    </select>
    
-   <select id="getBoardOneNotReadCount" statementType="CALLABLE" parameterType="ezen.main.dto.TransferVO">
+   <!-- <select id="getBoardOneNotReadCount" statementType="CALLABLE" parameterType="ezen.main.dto.TransferVO">
    		{ CALL getBoardOneNotReadCount(
    				#{num}, 
    				#{list, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=bbsVO}
+   			)
+   		}
+   </select> -->
+   <select id="getBoardOneNotReadCount" statementType="CALLABLE" parameterType="java.util.HashMap">
+   		{ CALL getBoardOneNotReadCount(
+   				#{num}, 
+   				#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=boardMap}
    			)
    		}
    </select>

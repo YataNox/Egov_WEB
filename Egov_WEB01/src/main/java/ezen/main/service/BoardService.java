@@ -22,7 +22,8 @@ public interface BoardService {
 
 	void deleteBoard(String num);
 
-	TransferVO getBoardOneNotReadCount(String num);
+	/* TransferVO getBoardOneNotReadCount(String num); */
+	void getBoardOneNotReadCount(HashMap<String, Object> paramMap);
 
 	int getAllCount();
 

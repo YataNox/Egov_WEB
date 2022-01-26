@@ -12,11 +12,11 @@
 		<div id="wrap" align="center">
 			<h1>게시글 수정</h1>
 			<form action="boardupdate.do" name="frm" method="post" enctype="multipart/form-data">
-				<input type="hidden" name="num" value="${board.num}">
+				<input type="hidden" name="num" value="${board[0].NUM}">
 				<table>
 					<tr>
 						<th>작성자</th>
-						<td>${board.userid}<input type="hidden" name="userid" value="${loginUser.id}"></td>
+						<td>${board[0].USERID}<input type="hidden" name="userid" value="${loginUser.id}"></td>
 					</tr>
 					<tr>
 						<th>비밀번호</th>
@@ -24,29 +24,29 @@
 					</tr>
 					<tr>
 						<th>이메일</th>
-						<td><input type="text" name="email" value="${board.email}" size="30"></td>
+						<td><input type="text" name="email" value="${board[0].EMAIL}" size="30"></td>
 					</tr>
 					<tr>
 						<th>제목</th>
-						<td><input type="text" name="title" value="${board.title}" size="50">*</td>
+						<td><input type="text" name="title" value="${board[0].TITLE}" size="50">*</td>
 					</tr>
 					<tr>
 						<th>내용</th>
-						<td><textarea cols="70" rows="15" name="content">${board.content}</textarea>*</td>
+						<td><textarea cols="70" rows="15" name="content">${board[0].CONTENT}</textarea>*</td>
 					</tr>
 					<tr>
 						<th>이미지</th>
 						<td>
 							<c:choose>
-								<c:when test="${empty board.imgfilename}">
+								<c:when test="${empty board[0].IMGFILENAME}">
 									<img src="<c:url value='/images/noname.jpg'/>" height="70"/><br>
 								</c:when>
 								<c:otherwise>
-									<img src="<c:url value='/images/${board.imgfilename}'/>" height="70"/><br>
+									<img src="<c:url value='/images/${board[0].IMGFILENAME}'/>" height="70"/><br>
 								</c:otherwise>
 							</c:choose>
 						<input type="file" name="imgfilename"><br>파일을 수정하고자 할때만 선택하세요.
-						<input type="hidden" name="oldfilename" value="${board.imgfilename}">
+						<input type="hidden" name="oldfilename" value="${board[0].IMGFILENAME}">
 						</td>
 					</tr>
 				</table>
@@ -54,7 +54,7 @@
 				<input type="submit" value="수정" onClick="return boardCheck()">
 				<input type="reset" value="다시작성">
 				<input type="button" value="돌아가기"
-				 onClick="location.href='boardviewwithoutcount.do?num=${board.num}'">
+				 onClick="location.href='boardviewwithoutcount.do?num=${board[0].NUM}'">
 			</form>
 		</div>
 	</body>

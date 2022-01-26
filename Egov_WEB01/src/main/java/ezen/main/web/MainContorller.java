@@ -206,8 +206,16 @@ public class MainContorller {
 		if(mvo == null) {
 			return "redirect:/loginForm.do";
 		}else {
+			
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("ref_cursor", null);
+			paramMap.put("num", num);
+			
+			bs.getBoardOneNotReadCount(paramMap);
+			
+			ArrayList<HashMap<String, Object>> list = (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
 			/* BoardVO bvo = bs.getBoardOne(num); */
-			TransferVO con = bs.getBoardOneNotReadCount(num);
+			/* TransferVO con = bs.getBoardOneNotReadCount(num); */
 			HashMap<String, Object> paramMap2 = new HashMap<String, Object>();
 			paramMap2.put("ref_cursor", null);
 			paramMap2.put("num", num);
@@ -216,7 +224,8 @@ public class MainContorller {
 			
 			ArrayList<HashMap<String, Object>> list2 = (ArrayList<HashMap<String, Object>>) paramMap2.get("ref_cursor");
 			/* model.addAttribute("board", bvo); */
-			model.addAttribute("board", con.getList().get(0));
+			/* model.addAttribute("board", con.getList().get(0)); */
+			model.addAttribute("board", list);
 			model.addAttribute("replyList", list2);
 			return "boardView";
 		}
@@ -358,14 +367,21 @@ public class MainContorller {
 		if(mvo == null) {
 			return "redirect:/loginForm.do";
 		}else {
-			TransferVO con = bs.getBoardOneNotReadCount(request.getParameter("num"));
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("ref_cursor", null);
+			paramMap.put("num", request.getParameter("num"));
+			
+			bs.getBoardOneNotReadCount(paramMap);
+			
+			ArrayList<HashMap<String, Object>> list = (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
+			
 			/* BoardVO bvo = bs.getBoardOne(request.getParameter("num")); */
-			BoardVO bvo = (BoardVO)con.getList().get(0);
+			HashMap<String, Object> bvo = list.get(0);
 			String pass = request.getParameter("pass");
-			if(!bvo.getPass().equals(pass)) {
+			if(!bvo.get("PASS").equals(pass)) {
 				model.addAttribute("message", "비밀번호가 일치하지 않습니다.");
 				return "boardCheckPass";
-			}else if(bvo.getPass().equals(pass)) {
+			}else if(bvo.get("PASS").equals(pass)) {
 				return "checkSuccess";
 			}else {
 				model.addAttribute("message", "기타 오류로 실패.");
@@ -385,8 +401,14 @@ public class MainContorller {
 			 * BoardVO bvo = bs.getBoardOne(request.getParameter("num"));
 			 * model.addAttribute("board", bvo);
 			 */
-			TransferVO con = bs.getBoardOneNotReadCount(request.getParameter("num"));
-			model.addAttribute("board", con.getList().get(0));
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("ref_cursor", null);
+			paramMap.put("num", request.getParameter("num"));
+			
+			bs.getBoardOneNotReadCount(paramMap);
+			
+			ArrayList<HashMap<String, Object>> list = (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
+			model.addAttribute("board", list);
 			return "boardUpdate";
 		}
 	}
@@ -402,9 +424,15 @@ public class MainContorller {
 			MultipartRequest multi = new MultipartRequest(
 					request, savePath, 5*1024*1024 , "UTF-8", new DefaultFileRenamePolicy());
 				
-			TransferVO con = bs.getBoardOneNotReadCount(multi.getParameter("num"));
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("ref_cursor", null);
+			paramMap.put("num", request.getParameter("num"));
+			
+			bs.getBoardOneNotReadCount(paramMap);
+			
+			ArrayList<HashMap<String, Object>> list = (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
 			/* BoardVO bvo = bs.getBoardOne(request.getParameter("num")); */
-			BoardVO bvo = (BoardVO)con.getList().get(0);
+			BoardVO bvo = (BoardVO)list.get(0).values();
 			bvo.setEmail(multi.getParameter("email"));
 			bvo.setPass(multi.getParameter("pass"));
 			bvo.setTitle(multi.getParameter("title"));

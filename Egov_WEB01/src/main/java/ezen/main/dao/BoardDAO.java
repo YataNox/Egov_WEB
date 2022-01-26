@@ -23,7 +23,8 @@ public interface BoardDAO {
 
 	void deleteBoard(String num);
 
-	void getBoardOneNotReadCount(TransferVO container);
+	/* void getBoardOneNotReadCount(TransferVO container); */
+	void getBoardOneNotReadCount(HashMap<String, Object> paramMap);
 
 	void getAllCount(TransferVO con);
 

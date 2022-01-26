@@ -71,12 +71,17 @@ public class BoardServiceimpl extends EgovAbstractServiceImpl implements BoardSe
 		bdao.deleteBoard(num);
 	}
 
-	@Override
+	/*@Override
 	public TransferVO getBoardOneNotReadCount(String num) {
 		TransferVO container = new TransferVO();
 		container.setNum(Integer.parseInt(num));
 		bdao.getBoardOneNotReadCount(container);
 		return container;
+	}*/
+	
+	@Override
+	public void getBoardOneNotReadCount(HashMap<String, Object> paramMap) {
+		bdao.getBoardOneNotReadCount(paramMap);
 	}
 
 	@Override
