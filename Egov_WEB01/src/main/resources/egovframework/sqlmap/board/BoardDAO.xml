@@ -46,9 +46,16 @@
       	}
    </select>
    
-   <select id="getReply" statementType="CALLABLE" parameterType="ezen.main.dto.TransferVO2">
+   <!-- <select id="getReply" statementType="CALLABLE" parameterType="ezen.main.dto.TransferVO2">
       	{ 
       		CALL selectReply(#{list, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=repVO},
+      		${num})
+      	}
+   </select> -->
+   
+   <select id="getReply" statementType="CALLABLE" parameterType="java.util.HashMap">
+      	{ 
+      		CALL selectReply(#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=boardMap},
       		${num})
       	}
    </select>
@@ -65,9 +72,10 @@
    		}
    </select> -->
    
-   <select id="getBoardOne" statementType="CALLABLE" parameterType="ezen.main.dto.TransferVO">
+   <select id="getBoardOne" statementType="CALLABLE" parameterType="java.util.HashMap">
    		{ 
-   			CALL selectBoard(#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=boardMap})
+   			CALL selectBoardOne(#{num},
+   			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=boardMap})
    		}
    </select>
    
