@@ -1,5 +1,7 @@
 package ezen.main.dao;
 
+import java.util.HashMap;
+
 import egovframework.rte.psl.dataaccess.mapper.Mapper;
 import ezen.main.dto.BoardVO;
 import ezen.main.dto.ReplyVO;
@@ -9,7 +11,8 @@ import ezen.main.dto.TransferVO2;
 @Mapper(value="BoardDAO")
 public interface BoardDAO {
 	/* ArrayList<BoardVO> getBoard(); */
-	void getBoard(TransferVO container);
+	/* void getBoard(TransferVO container); */
+	 void getBoard(HashMap<String, Object> map); 
 	
 	/* BoardVO getBoardOne(String num); */
 	void getBoardOne(TransferVO container);

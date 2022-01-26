@@ -34,16 +34,16 @@
 				</tr>
 				<c:forEach var="board" items="${boardList}">
 					<tr class="record">
-						<td align="center">${board.num}</td>
+						<td align="center">${board.NUM}</td>
 						<td>
-							<a href="boardView.do?num=${board.num}">${board.title}</a>
-							<c:if test="${board.replycnt > 0}">
-								<span style="color: red; font-weight: bold;">[${board.replycnt}]</span>
+							<a href="boardView.do?num=${board.NUM}">${board.TITLE}</a>
+							<c:if test="${board.REPLYCNT > 0}">
+								<span style="color: red; font-weight: bold;">[${board.REPLYCNT}]</span>
 							</c:if>
 						</td>
-						<td align="center">${board.userid}</td>
-						<td align="center"><fmt:formatDate value="${board.writedate}"/></td>
-						<td align="center">${board.readcount}</td>
+						<td align="center">${board.USERID}</td>
+						<td align="center"><fmt:formatDate value="${board.WRITEDATE}"/></td>
+						<td align="center">${board.READCOUNT}</td>
 					</tr>
 				</c:forEach>
 			</table><br>

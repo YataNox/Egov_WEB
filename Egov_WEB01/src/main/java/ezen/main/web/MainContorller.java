@@ -1,6 +1,8 @@
 package ezen.main.web;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletContext;
@@ -19,7 +21,6 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import ezen.main.dto.BoardVO;
 import ezen.main.dto.MemberVO;
-import ezen.main.dto.Paging;
 import ezen.main.dto.ReplyVO;
 import ezen.main.dto.TransferVO;
 import ezen.main.dto.TransferVO2;
@@ -97,30 +98,35 @@ public class MainContorller {
 		if(mvo == null) {
 			return "redirect:/loginForm.do";
 		}else {
-			int page = 1;
-			
-			if(request.getParameter("page") != null) {
-				page = Integer.parseInt(request.getParameter("page"));
-				session.setAttribute("page", page);
-			}else if(session.getAttribute("page") != null) {
-				page = (int) session.getAttribute("page");
-			}else {
-				page = 1;
-				session.removeAttribute("page");
-			}
-			
-			Paging paging = new Paging();
-			paging.setPage(page);
-			
-			int count = bs.getAllCount();
-			paging.setTotalCount(count);
-			
-			model.addAttribute("paging", paging);
-			model.addAttribute("main");
+//			int page = 1;
+//			
+//			if(request.getParameter("page") != null) {
+//				page = Integer.parseInt(request.getParameter("page"));
+//				session.setAttribute("page", page);
+//			}else if(session.getAttribute("page") != null) {
+//				page = (int) session.getAttribute("page");
+//			}else {
+//				page = 1;
+//				session.removeAttribute("page");
+//			}
+//			
+//			Paging paging = new Paging();
+//			paging.setPage(page);
+//			
+//			int count = bs.getAllCount();
+//			paging.setTotalCount(count);
+//			
+//			model.addAttribute("paging", paging);
+//			model.addAttribute("main");
+//-------------------------------------------------------------------------------------
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("ref_cursor", null);
 			
 			/* ArrayList<BoardVO> list = bs.getBoard(); */
-			TransferVO con = bs.getBoard(paging);
-			model.addAttribute("boardList", con.getList());
+			bs.getBoard(/* paging */ paramMap);
+			ArrayList<HashMap<String, Object>> list = (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
+			
+			model.addAttribute("boardList", list);
 		    
 			/* model.addAttribute("boardList", list); */
 		    return "main";

@@ -1,14 +1,16 @@
 package ezen.main.service;
 
+import java.util.HashMap;
+
 import ezen.main.dto.BoardVO;
-import ezen.main.dto.Paging;
 import ezen.main.dto.ReplyVO;
 import ezen.main.dto.TransferVO;
 import ezen.main.dto.TransferVO2;
 
 public interface BoardService {
 	/* ArrayList<BoardVO> getBoard(); */
-	TransferVO getBoard(Paging paging);
+//	TransferVO getBoard(Paging paging);
+	void getBoard(HashMap<String, Object> map);
 
 	/* BoardVO getBoardOne(String num); */
 	TransferVO getBoardOne(String num);

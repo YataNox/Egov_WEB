@@ -1,5 +1,7 @@
 package ezen.main.service.impl;
 
+import java.util.HashMap;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -7,7 +9,6 @@ import org.springframework.stereotype.Service;
 import egovframework.rte.fdl.cmmn.EgovAbstractServiceImpl;
 import ezen.main.dao.BoardDAO;
 import ezen.main.dto.BoardVO;
-import ezen.main.dto.Paging;
 import ezen.main.dto.ReplyVO;
 import ezen.main.dto.TransferVO;
 import ezen.main.dto.TransferVO2;
@@ -23,13 +24,18 @@ public class BoardServiceimpl extends EgovAbstractServiceImpl implements BoardSe
 	//	return bdao.getBoard();
 	//	}
 	
+//	@Override
+//	public TransferVO getBoard(Paging paging) {
+//		TransferVO container = new TransferVO();
+//		container.setStartNum(paging.getStartNum());
+//		container.setEndNum(paging.getEndNum());
+//		bdao.getBoard(container);
+//		return container;
+//	}
+	
 	@Override
-	public TransferVO getBoard(Paging paging) {
-		TransferVO container = new TransferVO();
-		container.setStartNum(paging.getStartNum());
-		container.setEndNum(paging.getEndNum());
-		bdao.getBoard(container);
-		return container;
+	public void getBoard(HashMap<String, Object> map) {
+		bdao.getBoard(map);
 	}
 
 	/*@Override

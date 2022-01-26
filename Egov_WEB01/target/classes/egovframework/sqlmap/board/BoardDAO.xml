@@ -25,16 +25,24 @@
 		<result property="writedate" column="WRITEDATE"/>
 		<result property="content" column="CONTENT"/>
 	</resultMap>
+	
+	<resultMap type="java.util.HashMap" id="boardMap"></resultMap>
 
 	<!-- <select id="getBoard" statementType="CALLABLE" resultType="ezen.main.dto.BoardVO" >
       	select * from board order by num desc
    </select> -->
    
-   <select id="getBoard" statementType="CALLABLE" parameterType="ezen.main.dto.TransferVO">
+   <!-- <select id="getBoard" statementType="CALLABLE" parameterType="ezen.main.dto.TransferVO">
       	{ 
       		CALL selectBoard(#{list, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=bbsVO},
       			${startNum}, ${endNum}
       		)
+      	}
+   </select> -->
+   
+   <select id="getBoard" statementType="CALLABLE" parameterType="java.util.HashMap">
+      	{ 
+      		CALL selectBoard(#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=boardMap})
       	}
    </select>
    
