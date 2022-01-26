@@ -97,7 +97,7 @@ public class MainContorller {
 		if(mvo == null) {
 			return "redirect:/loginForm.do";
 		}else {
-int page = 1;
+			int page = 1;
 			
 			if(request.getParameter("page") != null) {
 				page = Integer.parseInt(request.getParameter("page"));
