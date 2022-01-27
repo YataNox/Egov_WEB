@@ -76,8 +76,8 @@ public class BoardServiceimpl extends EgovAbstractServiceImpl implements BoardSe
 	}
 
 	@Override
-	public void deleteBoard(String num) {
-		bdao.deleteBoard(num);
+	public void deleteBoard(HashMap<String, Object> paramMap) {
+		bdao.deleteBoard(paramMap);
 	}
 
 	/*@Override

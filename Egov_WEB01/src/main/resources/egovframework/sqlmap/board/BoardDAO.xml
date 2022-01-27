@@ -127,8 +127,8 @@
    		delete from board where num=#{param1}
    	</delete> -->
    	
-   	<delete id="deleteBoard" statementType="CALLABLE">
-   		{CALL deleteBoard(#{param1})}
+   	<delete id="deleteBoard" statementType="CALLABLE" parameterType="java.util.HashMap">
+   		{CALL deleteBoard(#{num})}
    	</delete>
    	
 	<select id="getAllCount" statementType="CALLABLE" parameterType="ezen.main.dto.TransferVO">

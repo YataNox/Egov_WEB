@@ -10,7 +10,9 @@
 			if(window.name=="update"){
 				window.opener.location.href="boardUpdateForm.do?num=${param.num}";
 			}else if(window.name=="delete"){
-				window.opener.location.href="boardDelete.do?num=${param.num}";
+				var answer = confirm("정말로 삭제할까요?");
+				if(answer)
+					window.opener.location.href="boardDelete.do?num=${param.num}";
 			}
 			self.close();
 			

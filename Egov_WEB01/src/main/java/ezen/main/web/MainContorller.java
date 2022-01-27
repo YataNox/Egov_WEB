@@ -471,7 +471,9 @@ public class MainContorller {
 		if(mvo == null) {
 			return "redirect:/loginForm.do";
 		}else {
-			bs.deleteBoard(request.getParameter("num"));
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("num", Integer.parseInt(request.getParameter("num")));
+			bs.deleteBoard(paramMap);
 			return "redirect:/boardList.do";
 		}
 	}

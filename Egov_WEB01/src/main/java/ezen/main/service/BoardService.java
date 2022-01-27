@@ -22,7 +22,7 @@ public interface BoardService {
 	/* void updateBoard(BoardVO bvo); */
 	void updateBoard(HashMap<String, Object> paramMap);
 
-	void deleteBoard(String num);
+	void deleteBoard(HashMap<String, Object> paramMap);
 
 	/* TransferVO getBoardOneNotReadCount(String num); */
 	void getBoardOneNotReadCount(HashMap<String, Object> paramMap);

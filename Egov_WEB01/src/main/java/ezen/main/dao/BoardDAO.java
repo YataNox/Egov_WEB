@@ -21,7 +21,7 @@ public interface BoardDAO {
 
 	void updateBoard(HashMap<String, Object> paramMap);
 
-	void deleteBoard(String num);
+	void deleteBoard(HashMap<String, Object> paramMap);
 
 	/* void getBoardOneNotReadCount(TransferVO container); */
 	void getBoardOneNotReadCount(HashMap<String, Object> paramMap);
