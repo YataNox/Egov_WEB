@@ -32,7 +32,10 @@ public interface BoardService {
 	/* TransferVO2 getReplyList(String num); */
 	void getReplyList(HashMap<String, Object> paramMap2);
 
-	void insertReply(ReplyVO rvo);
+	/* void insertReply(ReplyVO rvo); */
+	void insertReply(HashMap<String, Object> paramMap);
 
-	void deleteReply(int num, int boardnum);
+	/* void deleteReply(int num, int boardnum); */
+
+	void deleteReply(HashMap<String, Object> paramMap);
 }

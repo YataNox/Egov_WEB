@@ -103,8 +103,8 @@
    		{CALL insertBoard(#{userid},#{pass},#{title}, #{email}, #{content}, #{imgfilename})}
    	</insert>
    	
-   	<insert id="insertReply" statementType="CALLABLE" parameterType="ezen.main.dto.ReplyVO">
-   		{CALL insertReply(#{userid},#{boardnum}, #{content})}
+   	<insert id="insertReply" statementType="CALLABLE" parameterType="java.util.HashMap">
+   		{CALL insertReply(#{userid},#{boardnum}, #{reply})}
    	</insert>
    	
    	<update id="plusRepCount" statementType="CALLABLE">

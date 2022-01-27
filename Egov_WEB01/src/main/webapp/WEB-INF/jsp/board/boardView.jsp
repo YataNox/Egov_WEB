@@ -61,7 +61,7 @@
 						<th>&nbsp;</th>
 					</tr>
 					<tr align="center">
-						<td width="100">${loginUser.id}<input type="hidden" name="userid" value="${loginUser.id}"></td>
+						<td width="100">${loginUser.ID}<input type="hidden" name="userid" value="${loginUser.ID}"></td>
 						<td width="100"><fmt:formatDate value="${now}" pattern="MM/dd HH:mm"/></td>
 						<td width="670"><input type="text" name="reply" size="85"></td>
 						<td width="100"><input type="submit" value="답글작성" onclick="return reply_check();"></td>
@@ -74,7 +74,7 @@
 							</td>
 							<td>${reply.CONTENT}</td>
 							<td align="center">
-								<c:if test="${reply.USERID==loginUser.id}">
+								<c:if test="${reply.USERID==loginUser.ID}">
 									<input type="button" value="삭제" onclick="location.href='deleteReply.do?num=${reply.NUM}&boardnum=${reply.BOARDNUM}'">
 								</c:if>&nbsp;
 							</td>

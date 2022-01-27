@@ -113,16 +113,28 @@ public class BoardServiceimpl extends EgovAbstractServiceImpl implements BoardSe
 		bdao.getReply(paramMap2);
 	}
 
+//	@Override
+//	public void insertReply(ReplyVO rvo) {
+//		bdao.insertReply(rvo);
+//		bdao.plusRepCount(rvo.getBoardnum());
+//	}
+	
 	@Override
-	public void insertReply(ReplyVO rvo) {
-		bdao.insertReply(rvo);
-		bdao.plusRepCount(rvo.getBoardnum());
+	public void insertReply(HashMap<String, Object> paramMap) {
+		bdao.insertReply(paramMap);
+		bdao.plusRepCount(Integer.parseInt((String) paramMap.get("boardnum")));
 	}
 
-	@Override
+	/*@Override
 	public void deleteReply(int num, int boardnum) {
 		bdao.deleteReply(num);
 		bdao.minusRepCount(boardnum);
+	}*/
+	
+	@Override
+	public void deleteReply(HashMap<String, Object> paramMap) {
+		bdao.deleteReply(Integer.parseInt((String) paramMap.get("num")));
+		bdao.minusRepCount(Integer.parseInt((String) paramMap.get("boardnum")));
 	}
 	
 }

@@ -485,13 +485,20 @@ public class MainContorller {
 		if(mvo == null) {
 			return "redirect:/loginForm.do";
 		}else {
-			ReplyVO rvo = new ReplyVO();
-			rvo.setUserid((String)mvo.get("ID"));
-			rvo.setBoardnum(Integer.parseInt(request.getParameter("boardnum")));
-			rvo.setContent(request.getParameter("reply"));
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("userid", request.getParameter("userid"));
+			paramMap.put("reply", request.getParameter("reply"));
+			paramMap.put("boardnum", request.getParameter("boardnum"));
 			
-			bs.insertReply(rvo);
-			return "redirect:/boardviewwithoutcount.do?num=" + rvo.getBoardnum();
+			bs.insertReply(paramMap);
+			/*
+			 * ReplyVO rvo = new ReplyVO(); rvo.setUserid((String)mvo.get("ID"));
+			 * rvo.setBoardnum(Integer.parseInt(request.getParameter("boardnum")));
+			 * rvo.setContent(request.getParameter("reply"));
+			 * 
+			 * bs.insertReply(rvo);
+			 */
+			return "redirect:/boardviewwithoutcount.do?num=" + request.getParameter("boardnum");
 		}
 	}
 	
@@ -502,11 +509,13 @@ public class MainContorller {
 		if(mvo == null) {
 			return "redirect:/loginForm.do";
 		}else {
-			int num = Integer.parseInt(request.getParameter("num"));
-			int boardnum = Integer.parseInt(request.getParameter("boardnum"));
-			bs.deleteReply(num, boardnum);
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("num", request.getParameter("num"));
+			paramMap.put("boardnum", request.getParameter("boardnum"));
 			
-			return "redirect:/boardviewwithoutcount.do?num=" + boardnum;
+			bs.deleteReply(paramMap);
+			
+			return "redirect:/boardviewwithoutcount.do?num=" + request.getParameter("boardnum");
 		}
 	}
 }

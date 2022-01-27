@@ -31,7 +31,8 @@ public interface BoardDAO {
 	/* void getReply(TransferVO2 container); */
 	void getReply(HashMap<String, Object> paramMap2);
 
-	void insertReply(ReplyVO rvo);
+	/* void insertReply(ReplyVO rvo); */
+	void insertReply(HashMap<String, Object> paramMap);
 
 	void plusRepCount(int boardnum);
 
