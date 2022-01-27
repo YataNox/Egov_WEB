@@ -1,5 +1,8 @@
 package ezen.shop.web;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
@@ -19,6 +22,19 @@ public class ProductController {
 	
 	@RequestMapping(value="/main.do")
 	public String main(HttpServletRequest request, Model model) {
+		HashMap<String, Object> paramMap1 = new HashMap<String, Object>();
+		HashMap<String, Object> paramMap2 = new HashMap<String, Object>();
+		paramMap1.put("ref_cursor", null);
+		paramMap2.put("ref_cursor", null);
+		
+		ps.getBestList(paramMap1);
+		ps.getNewList(paramMap2);
+		
+		ArrayList<HashMap<String, Object>> list1 = (ArrayList<HashMap<String, Object>>) paramMap1.get("ref_cursor");
+		ArrayList<HashMap<String, Object>> list2 = (ArrayList<HashMap<String, Object>>) paramMap2.get("ref_cursor");
+		
+		model.addAttribute("bestList", list1);
+		model.addAttribute("newList", list2);
 		return "main";
 	}
 }

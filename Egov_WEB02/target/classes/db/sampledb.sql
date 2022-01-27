@@ -116,3 +116,40 @@ INSERT INTO SAMPLE VALUES('SAMPLE-00112','Runtime Environment','Integration Laye
 INSERT INTO SAMPLE VALUES('SAMPLE-00113','Runtime Environment','Integration Layer','Y','eGov')
 INSERT INTO SAMPLE VALUES('SAMPLE-00114','Runtime Environment','Integration Layer','Y','eGov')
 INSERT INTO IDS VALUES('SAMPLE',115)
+
+insert into product(pseq, name, kind, price1, price2, price3, content, image)
+values(product_seq.nextVal, '크로그다일부츠', '2', 40000, 50000, 10000, '오리지날 크로그다일부츠 입니다.', 'w2.jpg');
+insert into product(pseq, name, kind, price1, price2, price3, content, image, bestyn)
+values(product_seq.nextVal, '롱부츠', '2', 40000, 50000, 10000, '따뜻한 롱부츠 입니다.', 'w-28.jpg', 'n');
+insert into product(pseq, name, kind, price1, price2, price3, content, image, bestyn)
+values(product_seq.nextVal, '힐', '1', 10000, 12000, 2000, '여성전용 힐', 'w-26.jpg', 'n');
+insert into product(pseq, name, kind, price1, price2, price3, content, image, bestyn)
+values(product_seq.nextVal, '슬리퍼', '4', 5000, 5500, 500, '편안한 슬리퍼입니다.', 'w-25.jpg' , 'y');
+insert into product(pseq, name, kind, price1, price2, price3, content, image, bestyn)
+values(product_seq.nextVal, '회색힐', '1', 10000, 12000, 2000, '여성전용 힐', 'w9.jpg', 'n');
+insert into product(pseq, name, kind, price1, price2, price3, content, image)
+values(product_seq.nextVal, '여성부츠', '2', 12000, 18000, 6000, '여성용 부츠', 'w4.jpg');
+insert into product(pseq, name, kind, price1, price2, price3, content, image, bestyn)
+values(product_seq.nextVal, '핑크샌달', '3', 5000, 5500, 500, '사계절용 샌달입니다.', 'w-10.jpg', 'y');
+insert into product(pseq, name, kind, price1, price2, price3, content, image, bestyn)
+values(product_seq.nextVal, '슬리퍼', '3', 5000, 5500, 500, '편안한 슬리퍼입니다.', 'w11.jpg', 'y');
+insert into product(pseq, name, kind, price1, price2, price3, content, image)
+values(product_seq.nextVal, '스니커즈', '4', 15000, 20000, 5000, '활동성이 좋은 스니커즈입니다.', 'w1.jpg');
+insert into product(pseq, name, kind, price1, price2, price3, content, image, bestyn)
+values(product_seq.nextVal, '샌달', '3', 5000, 5500, 500, '사계절용 샌달입니다.', 'w-09.jpg', 'n');
+insert into product(pseq, name, kind, price1, price2, price3, content, image, bestyn)
+values(product_seq.nextVal, '스니커즈', '5', 15000, 20000, 5000, '활동성이 좋은 스니커즈입니다.', 'w-05.jpg', 'n');
+
+create or replace view best_pro_view
+as 
+select * from(
+select rownum, pseq, name, price2, image
+from product where bestyn='y' order by indate desc)
+where rownum <= 4;
+
+create or replace view new_pro_view
+as 
+select * from(
+select rownum, pseq, name, price2, image
+from product where useyn='y' order by indate desc)
+where rownum <= 4;
