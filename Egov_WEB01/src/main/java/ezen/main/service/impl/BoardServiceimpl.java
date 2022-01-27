@@ -34,8 +34,8 @@ public class BoardServiceimpl extends EgovAbstractServiceImpl implements BoardSe
 //	}
 	
 	@Override
-	public void getBoard(HashMap<String, Object> map) {
-		bdao.getBoard(map);
+	public void getBoard(HashMap<String, Object> paramMap) {
+		bdao.getBoard(paramMap);
 	}
 
 	/*@Override
@@ -94,10 +94,8 @@ public class BoardServiceimpl extends EgovAbstractServiceImpl implements BoardSe
 	}
 
 	@Override
-	public int getAllCount() {
-		TransferVO con = new TransferVO();
-		bdao.getAllCount(con); 
-		return con.getCount();
+	public void getAllCount(HashMap<String, Object> paramMap) {
+		bdao.getAllCount(paramMap); 
 	}
 
 	/*@Override
@@ -122,7 +120,7 @@ public class BoardServiceimpl extends EgovAbstractServiceImpl implements BoardSe
 	@Override
 	public void insertReply(HashMap<String, Object> paramMap) {
 		bdao.insertReply(paramMap);
-		bdao.plusRepCount(Integer.parseInt((String) paramMap.get("boardnum")));
+		/* bdao.plusRepCount(Integer.parseInt((String) paramMap.get("boardnum"))); */
 	}
 
 	/*@Override
@@ -134,7 +132,7 @@ public class BoardServiceimpl extends EgovAbstractServiceImpl implements BoardSe
 	@Override
 	public void deleteReply(HashMap<String, Object> paramMap) {
 		bdao.deleteReply(Integer.parseInt((String) paramMap.get("num")));
-		bdao.minusRepCount(Integer.parseInt((String) paramMap.get("boardnum")));
+		/* bdao.minusRepCount(Integer.parseInt((String) paramMap.get("boardnum"))); */
 	}
 	
 }

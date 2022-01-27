@@ -12,7 +12,7 @@ import ezen.main.dto.TransferVO2;
 public interface BoardDAO {
 	/* ArrayList<BoardVO> getBoard(); */
 	/* void getBoard(TransferVO container); */
-	 void getBoard(HashMap<String, Object> map); 
+	 void getBoard(HashMap<String, Object> paramMap); 
 	
 	/* BoardVO getBoardOne(String num); */
 	void getBoardOne(HashMap<String, Object> paramMap);
@@ -26,7 +26,7 @@ public interface BoardDAO {
 	/* void getBoardOneNotReadCount(TransferVO container); */
 	void getBoardOneNotReadCount(HashMap<String, Object> paramMap);
 
-	void getAllCount(TransferVO con);
+	void getAllCount(HashMap<String, Object> paramMap);
 
 	/* void getReply(TransferVO2 container); */
 	void getReply(HashMap<String, Object> paramMap2);

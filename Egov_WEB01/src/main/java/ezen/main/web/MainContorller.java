@@ -19,11 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-import ezen.main.dto.BoardVO;
-import ezen.main.dto.MemberVO;
-import ezen.main.dto.ReplyVO;
-import ezen.main.dto.TransferVO;
-import ezen.main.dto.TransferVO2;
+import ezen.main.dto.Paging;
 import ezen.main.service.BoardService;
 import ezen.main.service.MainService;
 
@@ -106,36 +102,39 @@ public class MainContorller {
 		if(mvo == null) {
 			return "redirect:/loginForm.do";
 		}else {
-//			int page = 1;
-//			
-//			if(request.getParameter("page") != null) {
-//				page = Integer.parseInt(request.getParameter("page"));
-//				session.setAttribute("page", page);
-//			}else if(session.getAttribute("page") != null) {
-//				page = (int) session.getAttribute("page");
-//			}else {
-//				page = 1;
-//				session.removeAttribute("page");
-//			}
-//			
-//			Paging paging = new Paging();
-//			paging.setPage(page);
-//			
-//			int count = bs.getAllCount();
-//			paging.setTotalCount(count);
-//			
-//			model.addAttribute("paging", paging);
-//			model.addAttribute("main");
-//-------------------------------------------------------------------------------------
 			// TransferVO를 사용할 때는 멤버변수를 만들어야만 사용할 수 있는 제약이 있다면,
 			// HashMap은 자유로운 key값 활용으로 제약없이 사용이 가능하다는 차이가 있습니다.
 			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			int page = 1;
+			
+			if(request.getParameter("page") != null) {
+				page = Integer.parseInt(request.getParameter("page"));
+				session.setAttribute("page", page);
+			}else if(session.getAttribute("page") != null) {
+				page = (int) session.getAttribute("page");
+			}else {
+				page = 1;
+				session.removeAttribute("page");
+			}
+			
+			Paging paging = new Paging();
+			paging.setPage(page);
+			
+			paramMap.put("cnt", 0);
+			bs.getAllCount(paramMap);
+			int count = (int)paramMap.get("cnt");
+			paging.setTotalCount(count);
+			
+			/* model.addAttribute("main"); */
 			paramMap.put("ref_cursor", null);
+			paramMap.put("startNum", paging.getStartNum());
+			paramMap.put("endNum", paging.getEndNum());
 			
 			/* ArrayList<BoardVO> list = bs.getBoard(); */
-			bs.getBoard(/* paging */ paramMap);
+			bs.getBoard(paramMap);
 			ArrayList<HashMap<String, Object>> list = (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
 			
+			model.addAttribute("paging", paging);
 			model.addAttribute("boardList", list);
 		    
 			/* model.addAttribute("boardList", list); */

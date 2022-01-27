@@ -27,7 +27,7 @@ public interface BoardService {
 	/* TransferVO getBoardOneNotReadCount(String num); */
 	void getBoardOneNotReadCount(HashMap<String, Object> paramMap);
 
-	int getAllCount();
+	void getAllCount(HashMap<String, Object> paramMap);
 
 	/* TransferVO2 getReplyList(String num); */
 	void getReplyList(HashMap<String, Object> paramMap2);

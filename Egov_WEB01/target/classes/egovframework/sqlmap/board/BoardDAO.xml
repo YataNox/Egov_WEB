@@ -42,7 +42,7 @@
    
    <select id="getBoard" statementType="CALLABLE" parameterType="java.util.HashMap">
       	{ 
-      		CALL selectBoard(#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=boardMap})
+      		CALL selectBoard(${startNum}, ${endNum}, #{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=boardMap})
       	}
    </select>
    
@@ -131,8 +131,8 @@
    		{CALL deleteBoard(#{num})}
    	</delete>
    	
-	<select id="getAllCount" statementType="CALLABLE" parameterType="ezen.main.dto.TransferVO">
-      { CALL getAllCount(#{count, mode=OUT, jdbcType=INTEGER} ) }
+	<select id="getAllCount" statementType="CALLABLE" parameterType="java.util.HashMap">
+      { CALL getAllCount(#{cnt, mode=OUT, jdbcType=INTEGER} ) }
    	</select>
    	
    	<delete id="deleteReply" statementType="CALLABLE">
