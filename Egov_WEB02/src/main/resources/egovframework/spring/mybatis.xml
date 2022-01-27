@@ -6,7 +6,7 @@
 <configuration>
 
 	<typeAliases>
-		<typeAlias type="java.util.HashMap" alias="map"/>
+		<typeAlias type="java.util.Map" alias="map"/>
 	</typeAliases>
   
 </configuration>
