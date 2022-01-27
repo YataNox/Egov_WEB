@@ -1,5 +1,7 @@
 package ezen.main.service.impl;
 
+import java.util.HashMap;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -20,12 +22,17 @@ public class MainServiceimpl extends EgovAbstractServiceImpl implements MainServ
 		return mdao.getMember(id);
 	}*/
 	
-	@Override
+	/*@Override
 	public TransferVO getMember(String id) {
 		TransferVO container = new TransferVO();
 		container.setId(id);
 		mdao.getMember(container);
 		return container;
+	}*/
+	
+	@Override
+	public void getMember(HashMap<String, Object> paramMap) {
+		mdao.getMember(paramMap);
 	}
 
 	@Override
@@ -41,13 +48,13 @@ public class MainServiceimpl extends EgovAbstractServiceImpl implements MainServ
 	}
 
 	@Override
-	public void insertMember(MemberVO mvo) {
-		mdao.insertMember(mvo);
+	public void insertMember(HashMap<String, Object> paramMap) {
+		mdao.insertMember(paramMap);
 	}
 
 	@Override
-	public void updateMember(MemberVO mvo) {
-		mdao.updateMember(mvo);
+	public void updateMember(HashMap<String, Object> paramMap) {
+		mdao.updateMember(paramMap);
 	}
 
 

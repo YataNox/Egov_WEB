@@ -1,16 +1,18 @@
 package ezen.main.service;
 
+import java.util.HashMap;
+
 import ezen.main.dto.MemberVO;
 import ezen.main.dto.TransferVO;
 
 public interface MainService {
 	/* MemberVO getMember(String id); */
-	TransferVO getMember(String id);
+	void getMember(HashMap<String, Object> paramMap);
 
 	int getID(String id);
 
-	void insertMember(MemberVO mvo);
+	void insertMember(HashMap<String, Object> paramMap);
 
-	void updateMember(MemberVO mvo);
+	void updateMember(HashMap<String, Object> paramMap);
 	
 }

@@ -16,7 +16,7 @@
 				<tr>
 					<td colspan="5" style="border: white; text-align: right">
 						<div style="float: left;">
-							${loginUser.name}(${loginUser.id})님 로그인
+							${loginUser.NAME}(${loginUser.ID})님 로그인
 							<input type="button" value="정보수정" onclick="location.href='memberEditForm.do'">
 							<input type="button" value="로그아웃" onclick="location.href='logout.do'">
 						</div>

@@ -64,22 +64,30 @@ public class MainContorller {
 	public String login(@RequestParam("pw") String pw, HttpServletRequest request, Model model) {
 		String id = request.getParameter("id");
 
-		TransferVO con = ms.getMember(id);
-		if(con.getList().size() == 0) {
+		
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("ref_cursor", null);
+		paramMap.put("id", id);
+		
+		ms.getMember(paramMap);
+		
+		ArrayList<HashMap<String, Object>> list = (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
+		/* TransferVO con = ms.getMember(id); */
+		if(list.size() == 0) {
 			model.addAttribute("message", "아이디가 없어요.");
 			return "loginForm";
 		}
 		
 		/* MemberVO mvo = ms.getMember(id); */
-		MemberVO mvo = (MemberVO)con.getList().get(0);
-		
+		/* MemberVO mvo = (MemberVO)con.getList().get(0); */
+		HashMap<String, Object> mvo = list.get(0);
 		/*if(mvo == null) {
 			request.setAttribute("message", "아이디가 없어요.");
 			return "loginForm";
-		}else*/if(mvo.getPwd() == null) {
+		}else*/if(mvo.get("PWD") == null) {
 			request.setAttribute("message", "회원정보 오류. 관리자에게 문의하세요.");
 			return "loginForm";
-		}else if(!mvo.getPwd().equals(pw)) {
+		}else if(!mvo.get("PWD").equals(pw)) {
 			request.setAttribute("message", "비밀번호가 틀려요.");
 			return "loginForm";
 		}else {
@@ -93,7 +101,7 @@ public class MainContorller {
 	public String boardList(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
 		
-		MemberVO mvo = (MemberVO)session.getAttribute("loginUser");
+		HashMap<String, Object> mvo = (HashMap<String, Object>)session.getAttribute("loginUser");
 		
 		if(mvo == null) {
 			return "redirect:/loginForm.do";
@@ -164,7 +172,7 @@ public class MainContorller {
 		String num = request.getParameter("num");
 		HttpSession session = request.getSession();
 		
-		MemberVO mvo = (MemberVO)session.getAttribute("loginUser");
+		HashMap<String, Object> mvo = (HashMap<String, Object>)session.getAttribute("loginUser");
 		if(mvo == null) {
 			return "redirect:/loginForm.do";
 		}else {
@@ -202,7 +210,7 @@ public class MainContorller {
 		String num = request.getParameter("num");
 		HttpSession session = request.getSession();
 		
-		MemberVO mvo = (MemberVO)session.getAttribute("loginUser");
+		HashMap<String, Object> mvo = (HashMap<String, Object>)session.getAttribute("loginUser");
 		if(mvo == null) {
 			return "redirect:/loginForm.do";
 		}else {
@@ -240,10 +248,16 @@ public class MainContorller {
 	public String idcheck(HttpServletRequest request, Model model) {
 		String id = request.getParameter("userid");
 		
-		/* int result = ms.getID(id); */
-		TransferVO con = ms.getMember(id);
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("ref_cursor", null);
+		paramMap.put("id", id);
 		
-		if(con.getList().size()==0) {
+		ms.getMember(paramMap);
+		
+		ArrayList<HashMap<String, Object>> list = (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
+		/* int result = ms.getID(id); */
+		
+		if(list.size()==0) {
 			model.addAttribute("userid", id);
 			model.addAttribute("result", -1);
 		}
@@ -256,15 +270,21 @@ public class MainContorller {
 	
 	@RequestMapping(value="join.do")
 	public String join(HttpServletRequest request, Model model) {
-		MemberVO mvo = new MemberVO();
+		/*MemberVO mvo = new MemberVO();*/
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
 		
-		mvo.setId(request.getParameter("userid"));
-		mvo.setPwd(request.getParameter("pw"));
-		mvo.setName(request.getParameter("name"));
-		mvo.setEmail(request.getParameter("email"));
-		mvo.setPhone(request.getParameter("phone"));
+		paramMap.put("id", request.getParameter("userid"));
+		paramMap.put("pwd", request.getParameter("pw"));
+		paramMap.put("name", request.getParameter("name"));
+		paramMap.put("email", request.getParameter("email"));
+		paramMap.put("phone", request.getParameter("phone"));
+//		mvo.setId(request.getParameter("userid"));
+//		mvo.setPwd(request.getParameter("pw"));
+//		mvo.setName(request.getParameter("name"));
+//		mvo.setEmail(request.getParameter("email"));
+//		mvo.setPhone(request.getParameter("phone"));
 		
-		ms.insertMember(mvo);
+		ms.insertMember(paramMap);
 		
 		return "redirect:/loginForm.do";
 	}
@@ -272,7 +292,7 @@ public class MainContorller {
 	@RequestMapping(value="memberEditForm.do")
 	public String memberEditForm(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
-		MemberVO mvo = (MemberVO)session.getAttribute("loginUser");
+		HashMap<String, Object> mvo = (HashMap<String, Object>)session.getAttribute("loginUser");
 		if(mvo == null) {
 			return "redirect:/loginForm.do";
 		}else {
@@ -284,14 +304,15 @@ public class MainContorller {
 	@RequestMapping(value="editMember.do")
 	public String editMember(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
-		MemberVO mvo = (MemberVO)session.getAttribute("loginUser");
+		HashMap<String, Object> mvo = (HashMap<String, Object>)session.getAttribute("loginUser");
 		if(mvo == null) {
 			return "redirect:/loginForm.do";
 		}else {
-			mvo.setPwd(request.getParameter("pwd"));
-			mvo.setPhone(request.getParameter("phone"));
-			mvo.setName(request.getParameter("name"));
-			mvo.setEmail(request.getParameter("email"));
+			mvo.put("id", request.getParameter("userid"));
+			mvo.put("PWD", request.getParameter("pwd"));
+			mvo.put("PHONE", request.getParameter("phone"));
+			mvo.put("NAME", request.getParameter("name"));
+			mvo.put("EMAIL", request.getParameter("email"));
 			
 			ms.updateMember(mvo);
 			
@@ -303,7 +324,7 @@ public class MainContorller {
 	@RequestMapping(value="boardWriteForm.do")
 	public String boardWriteForm(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
-		MemberVO mvo = (MemberVO)session.getAttribute("loginUser");
+		HashMap<String, Object> mvo = (HashMap<String, Object>)session.getAttribute("loginUser");
 		if(mvo == null) {
 			return "redirect:/loginForm.do";
 		}else {
@@ -315,7 +336,7 @@ public class MainContorller {
 	@RequestMapping(value="boardWrite.do", method=RequestMethod.POST)
 	public String boardWrite(HttpServletRequest request, Model model) throws IOException {
 		HttpSession session = request.getSession();
-		MemberVO mvo = (MemberVO)session.getAttribute("loginUser");
+		HashMap<String, Object> mvo = (HashMap<String, Object>)session.getAttribute("loginUser");
 		if(mvo == null) {
 			return "redirect:/loginForm.do";
 		}else {
@@ -341,7 +362,7 @@ public class MainContorller {
 	@RequestMapping(value="boardEditForm.do")
 	public String boardEditForm(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
-		MemberVO mvo = (MemberVO)session.getAttribute("loginUser");
+		HashMap<String, Object> mvo = (HashMap<String, Object>)session.getAttribute("loginUser");
 		if(mvo == null) {
 			return "redirect:/loginForm.do";
 		}else {
@@ -352,7 +373,7 @@ public class MainContorller {
 	@RequestMapping(value="boardDeleteForm.do")
 	public String boardDeleteForm(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
-		MemberVO mvo = (MemberVO)session.getAttribute("loginUser");
+		HashMap<String, Object> mvo = (HashMap<String, Object>)session.getAttribute("loginUser");
 		if(mvo == null) {
 			return "redirect:/loginForm.do";
 		}else {
@@ -363,7 +384,7 @@ public class MainContorller {
 	@RequestMapping(value="boardCheckPass.do")
 	public String boardCheckPass(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
-		MemberVO mvo = (MemberVO)session.getAttribute("loginUser");
+		HashMap<String, Object> mvo = (HashMap<String, Object>)session.getAttribute("loginUser");
 		if(mvo == null) {
 			return "redirect:/loginForm.do";
 		}else {
@@ -393,7 +414,7 @@ public class MainContorller {
 	@RequestMapping(value="boardUpdateForm.do")
 	public String boardUpdateForm(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
-		MemberVO mvo = (MemberVO)session.getAttribute("loginUser");
+		HashMap<String, Object> mvo = (HashMap<String, Object>)session.getAttribute("loginUser");
 		if(mvo == null) {
 			return "redirect:/loginForm.do";
 		}else {
@@ -416,7 +437,7 @@ public class MainContorller {
 	@RequestMapping(value="boardupdate.do")
 	public String boardupdate(HttpServletRequest request, Model model) throws IOException {
 		HttpSession session = request.getSession();
-		MemberVO mvo = (MemberVO)session.getAttribute("loginUser");
+		HashMap<String, Object> mvo = (HashMap<String, Object>)session.getAttribute("loginUser");
 		if(mvo == null) {
 			return "redirect:/loginForm.do";
 		}else {
@@ -446,7 +467,7 @@ public class MainContorller {
 	@RequestMapping(value="boardDelete.do")
 	public String boardDelete(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
-		MemberVO mvo = (MemberVO)session.getAttribute("loginUser");
+		HashMap<String, Object> mvo = (HashMap<String, Object>)session.getAttribute("loginUser");
 		if(mvo == null) {
 			return "redirect:/loginForm.do";
 		}else {
@@ -458,12 +479,12 @@ public class MainContorller {
 	@RequestMapping(value="addReply.do", method=RequestMethod.POST)
 	public String addReply(HttpServletRequest request, Model model){
 		HttpSession session = request.getSession();
-		MemberVO mvo = (MemberVO)session.getAttribute("loginUser");
+		HashMap<String, Object> mvo = (HashMap<String, Object>)session.getAttribute("loginUser");
 		if(mvo == null) {
 			return "redirect:/loginForm.do";
 		}else {
 			ReplyVO rvo = new ReplyVO();
-			rvo.setUserid(mvo.getId());
+			rvo.setUserid((String)mvo.get("ID"));
 			rvo.setBoardnum(Integer.parseInt(request.getParameter("boardnum")));
 			rvo.setContent(request.getParameter("reply"));
 			
@@ -475,7 +496,7 @@ public class MainContorller {
 	@RequestMapping(value="deleteReply.do")
 	public String deleteReply(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
-		MemberVO mvo = (MemberVO)session.getAttribute("loginUser");
+		HashMap<String, Object> mvo = (HashMap<String, Object>)session.getAttribute("loginUser");
 		if(mvo == null) {
 			return "redirect:/loginForm.do";
 		}else {

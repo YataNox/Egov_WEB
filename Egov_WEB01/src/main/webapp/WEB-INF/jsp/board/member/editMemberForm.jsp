@@ -16,8 +16,8 @@
 				<table>
 					<tr>
 						<th>아이디</th>
-						<td>${loginUser.id}
-							<input type="hidden" name="userid" value="${loginUser.id}">&nbsp;
+						<td>${loginUser.ID}
+							<input type="hidden" name="userid" value="${loginUser.ID}">&nbsp;
 						</td>
 					</tr>
 					<tr>
@@ -30,15 +30,15 @@
 					</tr>
 					<tr>
 						<th>이름</th>
-						<td><input type="text" name="name" value="${loginUser.name}" size="20"></td>
+						<td><input type="text" name="name" value="${loginUser.NAME}" size="20"></td>
 					</tr>
 					<tr>
 						<th>이메일</th>
-						<td><input type="text" name="email" value="${loginUser.email}" size="20"></td>
+						<td><input type="text" name="email" value="${loginUser.EMAIL}" size="20"></td>
 					</tr>
 					<tr>
 						<th>전화번호</th>
-						<td><input type="text" name="phone" value="${loginUser.phone}" size="20"></td>
+						<td><input type="text" name="phone" value="${loginUser.PHONE}" size="20"></td>
 					</tr>
 				</table>
 				<input type="submit" value="수정" onclick="return editCheck()">&nbsp;
