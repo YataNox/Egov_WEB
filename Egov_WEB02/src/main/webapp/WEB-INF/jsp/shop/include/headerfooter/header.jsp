@@ -27,18 +27,18 @@
 					<ul>
 						<c:choose>
 							<c:when test="${empty loginUser}">
-								<li><a href="loginForm">LOGIN</a></li>
-								<li><a href="contract">JOIN</a></li>
+								<li><a href="loginForm.do">LOGIN</a></li>
+								<li><a href="contract.do">JOIN</a></li>
 							</c:when>
 							<c:otherwise>
 								<li style="color:yellow; font-weight:bold; font-size: 110%">${loginUser.NAME}(${loginUser.ID})</li>
-								<li><a href="memberEditForm">정보수정</a></li>
-								<li><a href="logout">LogOut</a></li>
+								<li><a href="memberEditForm.do">정보수정</a></li>
+								<li><a href="logout.do">LogOut</a></li>
 							</c:otherwise>
 						</c:choose>
-						<li><a href="cartList">CART</a></li>
-						<li><a href="myPage">MY PAGE</a></li>
-						<li><a href="qnaList" style="border:0px">Q&amp;A (1:1)</a></li>
+						<li><a href="cartList.do">CART</a></li>
+						<li><a href="myPage.do">MY PAGE</a></li>
+						<li><a href="qnaList.do" style="border:0px">Q&amp;A (1:1)</a></li>
 					</ul>
 				</nav>
 				<!-- 상단 메뉴 끝 -->
