@@ -8,7 +8,7 @@
 	
 	<select id="getMember" statementType="CALLABLE" parameterType="java.util.HashMap">
 		{
-			CALL getMember(${id}, 
+			CALL getMember(#{id}, 
 				#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=MemberVO}
 			)
 		}
