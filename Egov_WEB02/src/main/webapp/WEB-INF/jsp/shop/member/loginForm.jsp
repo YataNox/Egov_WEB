@@ -19,7 +19,6 @@
 			<input type="button" value="회원가입" class="cancel" onclick="location.href='contract.do'">
 			<input type="button" value="아이디 비밀번호 찾기" class="submit" onclick="find_id_pw()">
 		</div>
-		${message}
 	</form>
 </article>
 

@@ -10,12 +10,12 @@
 	<form method="post" name="formm" action="join.do" id="join">
 			<fieldset>
 				<legend>Basic Info</legend>
-				<label>User ID</label><input type="text" name="id" size="12" value="${dto.id}"><input type="hidden" name="reid">
+				<label>User ID</label><input type="text" name="id" size="12" value="${id}"><input type="hidden" name="reid">
 				<input type="button" value="중복 체크" class="dup" onclick="idcheck()"><br>
 				<label>Password</label><input type="password" name="pwd"><br>
 				<label>Retype Password</label><input type="password" name="pwdCheck"><br>
-				<label>Name</label><input type="text" name="name" value="${dto.name}"><br>
-				<label>Email</label><input type="text" name="email" value="${dto.email}"><br>
+				<label>Name</label><input type="text" name="name" value="${name}"><br>
+				<label>Email</label><input type="text" name="email" value="${email}"><br>
 				<label>${message}</label><br>
 			</fieldset>
 			
