@@ -10,4 +10,6 @@ public interface MemberService {
 
 	void insertMember(HashMap<String, Object> paramMap);
 
+	void updateMember(HashMap<String, Object> paramMap);
+
 }

@@ -29,4 +29,12 @@
 			)
 		}
 	</insert>
+	
+	<update id="updateMember" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			CALL updateMember(
+				#{id}, #{pwd}, #{name}, #{email}, #{zip_num}, #{address}, #{phone}
+			)
+		}
+	</update>
 </mapper>

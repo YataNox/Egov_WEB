@@ -132,5 +132,51 @@ public class MemberController {
 		return "member/loginForm";
 	} // join.do END
 	
+	@RequestMapping(value="memberEditForm.do")
+	public String memberEditForm(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		HashMap<String, Object> loginUser = (HashMap<String, Object>)session.getAttribute("loginUser");
+		String addr = (String)loginUser.get("ADDRESS");
+		
+		int k1 = addr.indexOf(" ");
+		int k2 = addr.indexOf(" ", k1+1);
+		int k3 = addr.indexOf(" ", k2+1);
+		
+		String addr1 = addr.substring(0, k3);
+		String addr2 = addr.substring(k3+1);
+		
+		model.addAttribute("loginUser", loginUser);
+		model.addAttribute("addr1", addr1);
+		model.addAttribute("addr2", addr2);
+		return "member/memberUpdateForm";
+	}
+	
+	@RequestMapping(value="memberUpdate.do")
+	public String memberUpdate(HttpServletRequest request, Model model) {
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("id", request.getParameter("id"));
+		paramMap.put("pwd", request.getParameter("pwd"));
+		paramMap.put("name", request.getParameter("name"));
+		paramMap.put("email", request.getParameter("email"));
+		paramMap.put("phone", request.getParameter("phone"));
+		paramMap.put("zip_num", request.getParameter("zip_num"));
+		String addr = request.getParameter("addr1") + " " + request.getParameter("addr2");
+		paramMap.put("address", addr);
+		
+		ms.updateMember(paramMap);
+		
+		HashMap<String, Object> mvo = new HashMap<String, Object>();
+		paramMap.put("ref_cursor", null);
+		paramMap.put("id", request.getParameter("id"));
+		
+		ms.getMember(paramMap);
+		
+		ArrayList<HashMap<String, Object>> list = (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
+		
+		mvo = list.get(0);
+		HttpSession session = request.getSession();
+		session.setAttribute("loginUser", mvo);
+		return "redirect:/main.do";
+	}
 	
 } // Controller END
