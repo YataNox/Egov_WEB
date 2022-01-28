@@ -17,4 +17,11 @@
 			CALL getNewList(#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=shopVO})
 		}
 	</select>
+	
+	<select id="getKindList" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			CALL getKindList(#{kind},
+			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=shopVO})
+		}
+	</select>
 </mapper>

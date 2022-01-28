@@ -8,4 +8,6 @@ public interface ProductService {
 
 	void getNewList(HashMap<String, Object> paramMap2);
 
+	void getKindList(HashMap<String, Object> paramMap1);
+
 }

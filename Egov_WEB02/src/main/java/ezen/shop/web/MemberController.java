@@ -177,6 +177,8 @@ public class MemberController {
 		HttpSession session = request.getSession();
 		session.setAttribute("loginUser", mvo);
 		return "redirect:/main.do";
-	}
+	} // memberUpdate.do
+	
+	
 	
 } // Controller END

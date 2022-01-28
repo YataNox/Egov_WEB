@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import ezen.shop.service.ProductService;
 
@@ -36,5 +37,20 @@ public class ProductController {
 		model.addAttribute("bestList", list1);
 		model.addAttribute("newList", list2);
 		return "main";
+	}
+	
+	@RequestMapping(value="category.do")
+	public String catagory(Model model, HttpServletRequest request) {
+		String kind = request.getParameter("kind");
+		
+		HashMap<String, Object> paramMap1 = new HashMap<String, Object>();
+		paramMap1.put("ref_cursor", null);
+		paramMap1.put("kind", kind);
+		ps.getKindList(paramMap1);
+		
+		ArrayList<HashMap<String, Object>> list = (ArrayList<HashMap<String, Object>>) paramMap1.get("ref_cursor");
+		model.addAttribute("productKindList", list);
+		
+		return "product/productKind";
 	}
 }

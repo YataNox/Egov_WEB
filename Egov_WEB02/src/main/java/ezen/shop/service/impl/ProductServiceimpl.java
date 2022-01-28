@@ -24,4 +24,8 @@ public class ProductServiceimpl extends EgovAbstractServiceImpl implements Produ
 	public void getNewList(HashMap<String, Object> paramMap2) {
 		pdao.getNewList(paramMap2);
 	}
+
+	public void getKindList(HashMap<String, Object> paramMap) {
+		pdao.getKindList(paramMap);
+	}
 }
