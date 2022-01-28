@@ -21,7 +21,7 @@ public class MemberController {
 	@RequestMapping(value="loginForm.do")
 	public String loginForm() {
 		return "member/loginForm";
-	}
+	} // loginForm.do END
 	
 	@RequestMapping(value="login.do")
 	public String login(HttpServletRequest request, Model model) {
@@ -53,5 +53,19 @@ public class MemberController {
 			return "member/loginForm";
 		}
 		
-	}
-}
+	} // login.do END
+	
+	@RequestMapping(value="logout.do")
+	public String logout(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		session.invalidate();
+		return "redirect:/main.do";
+	} // logout.do END
+	
+	@RequestMapping(value="contract.do")
+	public String contract() {
+		return "member/contract";
+	}// contract.do END
+	
+	
+} // Controller END
