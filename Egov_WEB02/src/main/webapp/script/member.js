@@ -21,7 +21,7 @@ function go_next(){
 	}
 	else{
 		// 스크립트 명령으로 폼의 액션 설정하고 submit 실행
-		document.formm.action = "joinForm";
+		document.formm.action = "joinForm.do";
 		document.formm.submit();
 	}
 	
@@ -34,13 +34,13 @@ function idcheck(){
 		return;
 	}
 	
-	var url = "idCheckForm?id=" + document.formm.id.value;
+	var url = "idCheckForm.do?id=" + document.formm.id.value;
 	var opt = "toolbar=no, menubar=no, resizable=no, width=500, height=250";
 	window.open(url, "IdCheck", opt);
 }
 
 function post_zip(){
-	var url = "findZipNum";
+	var url = "findZipNum.do";
 	var opt = "toolbar=no, menubar=no, resizable=no, width=500, height=300, top=300, left=300";
 	window.open(url, "우편번호 찾기", opt);
 }
@@ -65,7 +65,7 @@ function go_save(){
 		alert("이메일을 입력해 주세요.");
 		document.formm.email.focus();
 	}else{
-		document.formm.action = "join";
+		document.formm.action = "join.do";
 		document.formm.submit();
 	}
 }
@@ -84,13 +84,13 @@ function go_update(){
 		alert("이메일을 입력해주세요.");
 		document.formm.email.focus();
 	}else{
-		document.formm.action = "memberUpdate";
+		document.formm.action = "memberUpdate.do";
 		document.formm.submit();
 	}
 }
 
 function find_id(){
-	var url = "findIdPwd";
+	var url = "findIdPwd.do";
 	var opt = "toolbar=no, menubar=no, resizable=no, width=700, height=500, top=300, left=300";
 	window.open(url, "Find Id/Pw", opt);
 }

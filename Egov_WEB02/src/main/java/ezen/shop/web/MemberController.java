@@ -42,6 +42,7 @@ public class MemberController {
 		
 		HashMap<String, Object> mvo = list.get(0);
 		if(!mvo.get("PWD").equals(pwd)) {
+			model.addAttribute("id", id);
 			model.addAttribute("message", "비밀번호가 틀렸습니다.");
 			return "member/loginForm";
 		}else if(mvo.get("PWD").equals(pwd)) {
@@ -49,6 +50,7 @@ public class MemberController {
 			session.setAttribute("loginUser", mvo);
 			return "redirect:/main.do";
 		}else {
+			model.addAttribute("id", id);
 			model.addAttribute("message", "기타 오류로 로그인 실패");
 			return "member/loginForm";
 		}
@@ -66,6 +68,11 @@ public class MemberController {
 	public String contract() {
 		return "member/contract";
 	}// contract.do END
+	
+	@RequestMapping(value="joinForm.do")
+	public String joinForm(HttpServletRequest request) {
+		return "member/joinForm";
+	} // joinForm.do END
 	
 	
 } // Controller END
