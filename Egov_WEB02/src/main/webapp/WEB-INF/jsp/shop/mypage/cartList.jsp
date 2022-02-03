@@ -3,8 +3,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <%@ include file="../include/headerfooter/header.jsp"%>
-<%@ include file="../include/sub02/sub_image.html"%>
-<%@ include file="../include/sub02/sub_menu.html"%>
+<%@ include file="../include/sub03/sub_image.html"%>
+<%@ include file="../include/sub03/sub_menu.jsp"%>
 
 <article>
 	<h2>Cart List</h2>

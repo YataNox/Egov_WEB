@@ -5,4 +5,19 @@
 
 <mapper namespace="ezen.shop.dao.OrderDAO">
 	<resultMap type="java.util.HashMap" id="shopVO4"></resultMap>
+	
+	<insert id="insertOrder" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			CALL insertOrder(#{id}, #{oseq, mode=OUT, jdbcType=INTEGER})
+		}
+	</insert>
+	
+	<select id="selectOrder" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			CALL selectOrder(
+				${oseq},
+				#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=shopVO4}
+			)
+		}
+	</select>
 </mapper>
