@@ -53,4 +53,18 @@ public class ProductController {
 		
 		return "product/productKind";
 	}
+	
+	@RequestMapping(value="productDetail.do")
+	public String productDetail(HttpServletRequest request, Model model) {
+		int pseq = Integer.parseInt(request.getParameter("pseq"));
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("ref_cursor", null);
+		paramMap.put("pseq", pseq);
+		ps.getProduct(paramMap);
+		
+		ArrayList<HashMap<String, Object>> list = (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
+		
+		model.addAttribute("productVO", list.get(0));
+		return "product/productDetail";
+	}
 }

@@ -13,4 +13,6 @@ public interface ProductDAO {
 
 	void getKindList(HashMap<String, Object> paramMap);
 
+	void getProduct(HashMap<String, Object> paramMap);
+
 }

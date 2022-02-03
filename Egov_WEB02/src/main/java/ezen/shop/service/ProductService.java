@@ -10,4 +10,6 @@ public interface ProductService {
 
 	void getKindList(HashMap<String, Object> paramMap1);
 
+	void getProduct(HashMap<String, Object> paramMap);
+
 }
