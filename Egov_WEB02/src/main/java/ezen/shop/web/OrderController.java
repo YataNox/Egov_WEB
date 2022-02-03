@@ -62,4 +62,25 @@ public class OrderController {
 			return "mypage/orderList";
 		}
 	}
+	
+	@RequestMapping(value="myPage.do")
+	public String myPage(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		HashMap<String, Object> mvo = (HashMap<String, Object>) session.getAttribute("loginUser");
+		if(mvo == null) {
+			return "redirect:/loginForm.do";
+		}else {
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("id", mvo.get("ID").toString());
+			paramMap.put("ref_cursor", null);
+			
+			os.selectOrderResultOne(paramMap);
+			
+			ArrayList<HashMap<String, Object>> list = (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor");
+			
+			model.addAttribute("orderList", list);
+			model.addAttribute("title", "진행중인 주문 내역");
+			return "mypage/mypage";
+		}
+	}
 }

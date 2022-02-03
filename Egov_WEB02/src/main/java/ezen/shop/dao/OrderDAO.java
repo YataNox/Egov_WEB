@@ -11,4 +11,6 @@ public interface OrderDAO {
 
 	void selectOrder(HashMap<String, Object> paramMap);
 
+	void selectOrderResultOne(HashMap<String, Object> paramMap);
+
 }
