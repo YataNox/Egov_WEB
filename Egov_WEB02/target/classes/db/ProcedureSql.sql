@@ -52,3 +52,10 @@ begin
     address=p_address, phone=p_phone
     where id=p_id;
 end;
+
+create or replace view cart_view
+as 
+select c.cseq, c.id, m.name as mname, c.pseq, p.name as pname,
+c.quantity, p.price2, c.result, c.indate
+from cart c, product p, member m
+where c.pseq = p.pseq and m.id = c.id;

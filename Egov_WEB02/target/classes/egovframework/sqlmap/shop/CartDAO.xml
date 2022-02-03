@@ -5,4 +5,17 @@
 
 <mapper namespace="ezen.shop.dao.CartDAO">
 	<resultMap type="java.util.HashMap" id="shopVO2"></resultMap>
+	
+	<insert id="insertCart" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			CALL insertCart(#{pseq}, #{quantity}, #{id})
+		}
+	</insert>
+	
+	<select id="selectCart" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			CALL selectCart(#{id},
+			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=shopVO2})
+		}
+	</select>
 </mapper>

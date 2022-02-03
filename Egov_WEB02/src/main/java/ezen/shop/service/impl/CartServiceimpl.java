@@ -1,5 +1,7 @@
 package ezen.shop.service.impl;
 
+import java.util.HashMap;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -12,4 +14,14 @@ import ezen.shop.service.CartService;
 public class CartServiceimpl extends EgovAbstractServiceImpl implements CartService{
 	@Resource(name="CartDAO")
 	CartDAO cdao;
+
+	@Override
+	public void insertCart(HashMap<String, Object> paramMap) {
+		cdao.insertCart(paramMap);
+	}
+
+	@Override
+	public void selectCart(HashMap<String, Object> paramMap) {
+		cdao.selectCart(paramMap);
+	}
 }
