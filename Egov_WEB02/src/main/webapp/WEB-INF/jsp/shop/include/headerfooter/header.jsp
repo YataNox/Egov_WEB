@@ -17,7 +17,7 @@
 	
 				<div id="logo">
 					<!-- 메인로고 시작 -->
-					<a href="/main.do"> <img src="<c:url value='/images/logo.png'/>" width="180" height="100" />
+					<a href="main.do"> <img src="<c:url value='/images/logo.png'/>" width="180" height="100" />
 					</a>
 				</div>
 				<!-- 메인로고 끝 -->

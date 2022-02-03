@@ -18,4 +18,10 @@
 			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=shopVO2})
 		}
 	</select>
+	
+	<delete id="deleteCart" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			CALL deleteCart(#{cseq})
+		}
+	</delete>
 </mapper>

@@ -8,4 +8,6 @@ public interface CartService {
 
 	void selectCart(HashMap<String, Object> paramMap);
 
+	void deleteCart(HashMap<String, Object> paramMap);
+
 }

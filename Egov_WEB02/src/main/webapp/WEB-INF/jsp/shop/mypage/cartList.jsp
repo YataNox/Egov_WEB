@@ -56,7 +56,7 @@
 			</c:otherwise>
 		</c:choose>
 		<div id="buttons" style="float: right">
-			<input type="button" value="계속 쇼핑" class="cancel" onclick="location.href='shop.do?command=index'">
+			<input type="button" value="계속 쇼핑" class="cancel" onclick="location.href='main.do'">
 			<c:if test="${cartList.size() != 0}">
 				<input type="button" value="주문하기" class="submit" onClick="go_order_insert();">
 			</c:if>

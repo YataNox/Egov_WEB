@@ -24,4 +24,9 @@ public class CartServiceimpl extends EgovAbstractServiceImpl implements CartServ
 	public void selectCart(HashMap<String, Object> paramMap) {
 		cdao.selectCart(paramMap);
 	}
+
+	@Override
+	public void deleteCart(HashMap<String, Object> paramMap) {
+		cdao.deleteCart(paramMap);
+	}
 }
