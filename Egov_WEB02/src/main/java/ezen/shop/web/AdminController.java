@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import ezen.shop.dto.Paging;
 import ezen.shop.service.AdminService;
 import ezen.shop.service.ProductService;
 
@@ -71,58 +72,56 @@ public class AdminController {
 		if(loginAdmin == null)
 			return "redirect:/admin.do";
 		else {
-//			int page = 1;
-//			if(request.getParameter("first") != null && request.getParameter("first").equals("y")) {
-//				page = 1;
-//				session.removeAttribute("page");
-//			}
-//			else if(request.getParameter("page") != null) {
-//				page = Integer.parseInt(request.getParameter("page"));
-//				session.setAttribute("page", page);
-//			}else if(session.getAttribute("page") != null) {
-//				page = (Integer)session.getAttribute("page");
-//			}else {
-//				page = 1;
-//				session.removeAttribute("page");
-//			}
-//			
-//			String key = "";
-//			if(request.getParameter("first") != null && request.getParameter("first").equals("y")) {
-//				key = "";
-//				session.removeAttribute("key");
-//			}
-//			else if(request.getParameter("key") != null) {
-//				key = request.getParameter("key");
-//				session.setAttribute("key", key);
-//			}else if(session.getAttribute("key") != null) {
-//				key = (String)session.getAttribute("key");
-//			} else {
-//				session.removeAttribute("key");
-//				key = "";
-//			}
+			int page = 1;
+			if(request.getParameter("first") != null && request.getParameter("first").equals("y")) {
+				page = 1;
+				session.removeAttribute("page");
+			}
+			else if(request.getParameter("page") != null) {
+				page = Integer.parseInt(request.getParameter("page"));
+				session.setAttribute("page", page);
+			}else if(session.getAttribute("page") != null) {
+				page = (Integer)session.getAttribute("page");
+			}else {
+				page = 1;
+				session.removeAttribute("page");
+			}
 			
-//			Paging paging = new Paging();
-//			paging.setPage(page);
-//			
-//			int count = as.getAllCount("product", "name", key);
-//			paging.setTotalCount(count);
-//			paging.Paging();
-//			
-//			ArrayList<ProductVO> productList = as.listProduct(paging, key);
-//			
-//			request.setAttribute("paging", paging);
-//			request.setAttribute("key", key);
-//			model.addAttribute("productList", productList);
-//			model.addAttribute("admin/product/productList");
+			String key = "";
+			if(request.getParameter("first") != null && request.getParameter("first").equals("y")) {
+				key = "";
+				session.removeAttribute("key");
+			}
+			else if(request.getParameter("key") != null) {
+				key = request.getParameter("key");
+				session.setAttribute("key", key);
+			}else if(session.getAttribute("key") != null) {
+				key = (String)session.getAttribute("key");
+			} else {
+				session.removeAttribute("key");
+				key = "";
+			}
+			
+			Paging paging = new Paging();
+			paging.setPage(page);
 			
 			HashMap<String, Object> paramMap = new HashMap<String, Object>();
-			paramMap.put("ref_cursor", null);
+			paramMap.put("cnt", 0);
+			as.getAllCount(paramMap);
+			int cnt = Integer.parseInt(paramMap.get("cnt").toString());
+			paging.setTotalCount(cnt);
 			
+			paramMap.put("startNum", paging.getStartNum());
+			paramMap.put("endNum", paging.getEndNum());
+			paramMap.put("key", key);
+			paramMap.put("ref_cursor", null);
 			as.getProductList(paramMap);
 			
 			ArrayList<HashMap<String, Object>> list = (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor");
 			
-			model.addAttribute("productList", list);
+			request.setAttribute("paging", paging);
+			request.setAttribute("key", key);
+			model.addAttribute("productList", list);	
 			
 			return "admin/product/productList";
 		}

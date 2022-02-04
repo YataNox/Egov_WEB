@@ -11,4 +11,6 @@ public interface AdminDAO {
 
 	void getProductList(HashMap<String, Object> paramMap);
 
+	void getAllCount(HashMap<String, Object> paramMap);
+
 }

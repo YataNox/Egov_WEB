@@ -42,14 +42,14 @@
 		</c:forEach>
 	</table><br>
 	
-	<%-- <jsp:include page="../../paging/paging.jsp">
+	<jsp:include page="../../paging/paging.jsp">
 		<jsp:param name="page" value="${paging.page}"/>
 		<jsp:param name="beginPage" value="${paging.beginPage}"/>
 		<jsp:param name="endPage" value="${paging.endPage}"/>
 		<jsp:param name="prev" value="${paging.prev}"/>
 		<jsp:param name="next" value="${paging.next}"/>
-		<jsp:param name="command" value="productList"/>
-	</jsp:include> --%>
+		<jsp:param name="command" value="productList.do"/>
+	</jsp:include>
 	
 </article>
 
