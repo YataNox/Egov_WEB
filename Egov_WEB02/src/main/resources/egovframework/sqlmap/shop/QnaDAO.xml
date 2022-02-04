@@ -13,4 +13,12 @@
 			)
 		}
 	</select>
+	
+	<select id="getQnaByQseq" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			CALL getQnaByQseq(#{qseq},
+				#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=shopVO5}
+			)
+		}
+	</select>
 </mapper>

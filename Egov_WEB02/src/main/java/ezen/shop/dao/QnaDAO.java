@@ -9,4 +9,6 @@ public interface QnaDAO {
 
 	void getQnaList(HashMap<String, Object> paramMap);
 
+	void getQnaByQseq(HashMap<String, Object> paramMap);
+
 }

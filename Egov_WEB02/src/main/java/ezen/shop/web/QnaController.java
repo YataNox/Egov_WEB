@@ -37,4 +37,26 @@ public class QnaController {
 			return "qna/qnaList";
 		}
 	}
+	
+	@RequestMapping(value="qnaView.do")
+	public String qnaView(HttpServletRequest request, Model model) {
+		int qseq = Integer.parseInt(request.getParameter("qseq"));
+		HttpSession session = request.getSession();
+		HashMap<String, Object> loginUser = (HashMap<String, Object>)session.getAttribute("loginUser");
+		
+		if(loginUser == null) {
+			return "redirect:/loginForm.do";
+		}else {
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("ref_cursor", null);
+			paramMap.put("qseq", qseq);
+			
+			qs.getQnaByQseq(paramMap);
+			
+			ArrayList<HashMap<String, Object>> list = (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor");
+			
+			model.addAttribute("qnaVO", list.get(0));
+			return "qna/qnaView";
+		}
+	}
 }
