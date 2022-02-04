@@ -11,13 +11,13 @@
 	<form name="formm" method="post" action="qnaWrite.do">
 		<fieldset>
 			<legend>Board Info</legend>
-			<label>Title</label><input type="text" name="subject" size="60" value="${dto.SUBJECT}"><br>
+			<label>Title</label><input type="text" name="subject" size="60" value="${subject}"><br>
 			<label>Content</label>
-			<textarea rows="8" cols="65" name="content">${dto.CONTENT}</textarea>
+			<textarea rows="8" cols="65" name="content">${content}</textarea>
 		</fieldset>
 		<div class="clear"></div>
 		<div id="buttons" style="float: right">
-			<input type="submit" value="글쓰기" class="submit">
+			<input type="submit" value="글쓰기" class="submit" onclick="return checkQna();">
 			<input type="reset" value="취소" class="cancel"> 
 			<input type="button" value="쇼핑 계속하기" class="submit" onclick="location.href='main.do'">
 			<br><br>${message}

@@ -11,4 +11,6 @@ public interface QnaDAO {
 
 	void getQnaByQseq(HashMap<String, Object> paramMap);
 
+	void insertQna(HashMap<String, Object> paramMap);
+
 }

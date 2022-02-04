@@ -60,7 +60,7 @@ c.quantity, p.price2, c.result, c.indate
 from cart c, product p, member m
 where c.pseq = p.pseq and m.id = c.id;
 
-DROP TABLE order_detail CASCADE CONSTRAINTS;
+DROP TABLE qna CASCADE CONSTRAINTS;
 
 create table orders(
 	oseq number(10) primary key, -- 주문번호
@@ -83,3 +83,13 @@ m.name as mname, m.zip_num, m.address, m.phone,
 p.name as pname, p.price2
 from orders o, order_detail d, member m, product p
 where o.oseq = d.oseq and o.id = m.id and d.pseq = p.pseq;
+
+create table qna(
+	qseq number(5) primary key, -- 글번호
+	subject varchar2(300), -- 제목
+	content varchar2(1000), -- 문의 내용
+	reply varchar2(1000), -- 답변 내용
+	id varchar2(20), -- 작성자(FK : member.id)
+	rep char(1) default '1', -- 1: 답변무 2: 답변유
+	indate date default sysdate -- 작성일
+);

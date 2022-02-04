@@ -24,4 +24,9 @@ public class QnaServiceimpl extends EgovAbstractServiceImpl implements QnaServic
 	public void getQnaByQseq(HashMap<String, Object> paramMap) {
 		qdao.getQnaByQseq(paramMap);
 	}
+
+	@Override
+	public void insertQna(HashMap<String, Object> paramMap) {
+		qdao.insertQna(paramMap);
+	}
 }

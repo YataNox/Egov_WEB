@@ -44,3 +44,14 @@ function go_order_insert(){
 	document.formm.action="orderInsert.do";
 	document.formm.submit();
 }
+
+function checkQna(){
+	if(document.formm.subject.value==""){
+		alert("제목을 작성해주세요.");
+		return false;
+	}else if(document.formm.content.value==""){
+		alert("내용을 작성해주세요.");
+		return false;
+	}
+	return true;
+}
