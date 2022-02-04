@@ -29,4 +29,13 @@
 			)
 		}
 	</select>
+	
+	<select id="selectOrderAll" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			CALL selectOrderAll(
+				#{id},
+				#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=shopVO4}
+			)
+		}
+	</select>
 </mapper>

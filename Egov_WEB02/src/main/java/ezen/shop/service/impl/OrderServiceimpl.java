@@ -29,4 +29,9 @@ public class OrderServiceimpl extends EgovAbstractServiceImpl implements OrderSe
 	public void selectOrderResultOne(HashMap<String, Object> paramMap) {
 		odao.selectOrderResultOne(paramMap);
 	}
+
+	@Override
+	public void selectOrderAll(HashMap<String, Object> paramMap) {
+		odao.selectOrderAll(paramMap);
+	}
 }

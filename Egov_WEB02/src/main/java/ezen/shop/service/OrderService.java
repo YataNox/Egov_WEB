@@ -10,4 +10,6 @@ public interface OrderService {
 
 	void selectOrderResultOne(HashMap<String, Object> paramMap);
 
+	void selectOrderAll(HashMap<String, Object> paramMap);
+
 }
