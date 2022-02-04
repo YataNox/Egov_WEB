@@ -33,7 +33,43 @@
 	<select id="selectOrderAll" statementType="CALLABLE" parameterType="java.util.HashMap">
 		{
 			CALL selectOrderAll(
+				#{oseq},
+				#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=shopVO4}
+			)
+		}
+	</select>
+	
+	<select id="selectOseqById" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			CALL selectOseqById(
 				#{id},
+				#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=shopVO4}
+			)
+		}
+	</select>
+	
+	<select id="listOrderByOseq" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			CALL listOrderByOseq(
+				#{oseq},
+				#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=shopVO4}
+			)
+		}
+	</select>
+	
+	<select id="selectOrderDetailList" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			CALL selectOrderDetailList(
+				#{oseq},
+				#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=shopVO4}
+			)
+		}
+	</select>
+	
+	<select id="getOseqOrder" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			CALL getOseqOrder(
+				#{oseq},
 				#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=shopVO4}
 			)
 		}
