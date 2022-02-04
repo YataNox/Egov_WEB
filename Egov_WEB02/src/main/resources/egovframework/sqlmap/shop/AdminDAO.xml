@@ -5,4 +5,17 @@
 
 <mapper namespace="ezen.shop.dao.AdminDAO">
 	<resultMap type="java.util.HashMap" id="shopVO1"></resultMap>
+	
+	<select id="getAdmin" statementType="CALLABLE" parameterType="java.util.HashMap">
+		CALL getAdmin(
+			#{workId},
+			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=shopVO1}
+		)
+	</select>
+	
+	<select id="getProductList" statementType="CALLABLE" parameterType="java.util.HashMap">
+		CALL getProductList(
+			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=shopVO1}
+		)
+	</select>
 </mapper>

@@ -6,7 +6,8 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>AdminLogin</title>
-		<link rel="stylesheet" href="admin/css/admin.css">
+		<link rel="stylesheet" href="<c:url value='admin/admin.css'/>">
+		<link rel="stylesheet" href="<c:url value='admin/admin.js'/>">
 		<script type="text/javascript">
 			function workerCheck(){
 				if(document.frm.workId.value==""){
@@ -24,16 +25,15 @@
 		<div id="wrap">
 			<header>
 				<div id="logo">
-					<img src="admin/images/bar_01.gif" style="float: left;">
-					<img src="admin/images/text.gif">
+					<img src="<c:url value='admin/bar_01.gif'/>" style="float: left;">
+					<img src="<c:url value='admin/text.gif'/>">
 				</div>
 			</header>
 			<div class="clear"></div>
 			
 			<article>
 				<div id="loginform">
-					<form action="shop.do" method="post" name="frm">
-						<input type="hidden" name="command" value="adminLogin">
+					<form action="adminLogin.do" method="post" name="frm">
 						<table>
 							<tr>
 								<td>아이디</td>

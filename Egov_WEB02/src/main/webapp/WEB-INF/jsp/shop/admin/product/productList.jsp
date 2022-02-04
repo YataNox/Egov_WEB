@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file=/admin/header.jsp" %>
-<%-- <%@ include file="../../include/sub05/sub_menu.jsp"%> --%>
+<%@ include file="../../include/admin/header.jsp" %>
+<%@ include file="../../include/sub05/sub_menu.jsp"%>
 
 <article>
 	<h1>상품리스트</h1>
@@ -25,16 +25,16 @@
 		</tr>
 		<c:forEach items="${productList}" var="productVO">
 			<tr>
-				<td height="23" align="center">${productVO.pseq}</td>
+				<td height="23" align="center">${productVO.PSEQ}</td>
 				<td style="text-align: left; padding-left: 50px;">
-					<a href="#" onClick="go_detail('${productVO.pseq}')">${productVO.name}</a>
+					<a href="#" onClick="go_detail('${productVO.PSEQ}')">${productVO.NAME}</a>
 				</td>
-				<td><fmt:formatNumber value="${productVO.price1}"/></td>
-				<td><fmt:formatNumber value="${productVO.price2}"/></td>
-				<td><fmt:formatDate value="${productVO.indate}"/></td>
+				<td><fmt:formatNumber value="${productVO.PRICE1}"/></td>
+				<td><fmt:formatNumber value="${productVO.PRICE2}"/></td>
+				<td><fmt:formatDate value="${productVO.INDATG}"/></td>
 				<td>
 					<c:choose>
-						<c:when test='${productVO.useyn=="n" }'></c:when>
+						<c:when test='${productVO.USEYN=="n" }'></c:when>
 						<c:otherwise>사용</c:otherwise>
 					</c:choose>
 				</td>
@@ -42,15 +42,15 @@
 		</c:forEach>
 	</table><br>
 	
-	<jsp:include page="/admin/paging/paging.jsp">
+	<%-- <jsp:include page="../../paging/paging.jsp">
 		<jsp:param name="page" value="${paging.page}"/>
 		<jsp:param name="beginPage" value="${paging.beginPage}"/>
 		<jsp:param name="endPage" value="${paging.endPage}"/>
 		<jsp:param name="prev" value="${paging.prev}"/>
 		<jsp:param name="next" value="${paging.next}"/>
 		<jsp:param name="command" value="productList"/>
-	</jsp:include>
+	</jsp:include> --%>
 	
 </article>
 
-<%@ include file="/admin/footer.jsp"%>
+<%@ include file="../../include/admin/footer.jsp"%>

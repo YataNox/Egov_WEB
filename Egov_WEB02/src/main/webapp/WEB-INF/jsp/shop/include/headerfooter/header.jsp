@@ -38,7 +38,8 @@
 						</c:choose>
 						<li><a href="cartList.do">CART</a></li>
 						<li><a href="myPage.do">MY PAGE</a></li>
-						<li><a href="qnaList.do" style="border:0px">Q&amp;A (1:1)</a></li>
+						<li><a href="qnaList.do">Q&amp;A (1:1)</a></li>
+						<li><a href="admin.do">Admin</a></li>
 					</ul>
 				</nav>
 				<!-- 상단 메뉴 끝 -->
