@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import ezen.shop.dto.Paging;
 import ezen.shop.service.AdminService;
@@ -143,5 +144,15 @@ public class AdminController {
 		else {
 			return "admin/product/productWriteForm";
 		}
+	}
+	
+	@RequestMapping(value="fileup.do")
+	@ResponseBody
+	public HashMap<String, Object> fileup(HttpServletRequest request, Model model) {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		
+		resultMap.put("STATUS", 1);
+		resultMap.put("FILENAME", "abc.txt");
+		return resultMap;
 	}
 }
