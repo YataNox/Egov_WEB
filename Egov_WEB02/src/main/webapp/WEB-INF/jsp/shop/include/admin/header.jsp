@@ -8,7 +8,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="<c:url value='admin/admin.css'/>">
-<link rel="stylesheet" href="<c:url value='admin/admin.js'/>">
+<script type="text/javascript" src="<c:url value='admin/admin.js'/>"></script>
+<script type="text/javascript" src="<c:url value='admin/product.js'/>"></script>
 </head>
 <body>
 	<div id="wrap">

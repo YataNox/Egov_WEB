@@ -133,4 +133,15 @@ public class AdminController {
 		session.invalidate();
 		return "redirect:/admin.do";
 	}
+	
+	@RequestMapping(value="productWriteForm.do")
+	public String productWriteForm(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		HashMap<String, Object> loginAdmin = (HashMap<String, Object>)session.getAttribute("loginAdmin");
+		if(loginAdmin == null)
+			return "redirect:/admin.do";
+		else {
+			return "admin/product/productWriteForm";
+		}
+	}
 }
