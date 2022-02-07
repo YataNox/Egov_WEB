@@ -6,10 +6,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Admin Page</title>
 <link rel="stylesheet" href="<c:url value='admin/admin.css'/>">
 <script type="text/javascript" src="<c:url value='admin/admin.js'/>"></script>
 <script type="text/javascript" src="<c:url value='admin/product.js'/>"></script>
+<script type="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
 	<div id="wrap">
