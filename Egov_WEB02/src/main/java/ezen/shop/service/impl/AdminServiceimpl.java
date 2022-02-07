@@ -34,4 +34,9 @@ public class AdminServiceimpl extends EgovAbstractServiceImpl implements AdminSe
 	public void insertProduct(HashMap<String, Object> paramMap) {
 		adao.insertProduct(paramMap);
 	}
+
+	@Override
+	public void getProductDetail(HashMap<String, Object> paramMap) {
+		adao.getProductDetail(paramMap);
+	}
 }

@@ -15,4 +15,6 @@ public interface AdminDAO {
 
 	void insertProduct(HashMap<String, Object> paramMap);
 
+	void getProductDetail(HashMap<String, Object> paramMap);
+
 }

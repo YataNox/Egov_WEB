@@ -31,4 +31,11 @@
 			#{kind}, #{name}, #{price1}, #{price2}, #{price3}, #{content}, #{imgfilename}
 		)
 	</insert>
+	
+	<select id="getProductDetail" statementType="CALLABLE" parameterType="java.util.HashMap">
+		CALL getProductDetail(
+			#{pseq},
+			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=shopVO1}
+		)
+	</select>
 </mapper>

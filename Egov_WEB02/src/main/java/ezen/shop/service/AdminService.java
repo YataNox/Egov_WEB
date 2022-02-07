@@ -11,5 +11,7 @@ public interface AdminService {
 	void getAllCount(HashMap<String, Object> paramMap);
 
 	void insertProduct(HashMap<String, Object> paramMap);
+
+	void getProductDetail(HashMap<String, Object> paramMap);
 	
 }

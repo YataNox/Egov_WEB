@@ -203,4 +203,28 @@ public class AdminController {
 			return "redirect:/productList.do";
 		}
 	}
+	
+	@RequestMapping(value="adminProductDetail.do")
+	public String adminProductDetail(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		HashMap<String, Object> loginAdmin = (HashMap<String, Object>)session.getAttribute("loginAdmin");
+		if(loginAdmin == null)
+			return "redirect:/admin.do";
+		else {
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("ref_cursor", null);
+			paramMap.put("pseq", request.getParameter("pseq"));
+			
+			as.getProductDetail(paramMap);
+			
+			ArrayList<HashMap<String, Object>> list = (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor");
+			
+			String[] kindList = {"0", "Heels", "Boots", "Sandals", "Sneakers", "Sleeper", "On sale"};
+			int index = Integer.parseInt(list.get(0).get("KIND").toString());
+			
+			model.addAttribute("kind", kindList[index]);
+			model.addAttribute("productVO", list.get(0));
+			return "admin/product/productDetail";
+		}
+	}
 }
