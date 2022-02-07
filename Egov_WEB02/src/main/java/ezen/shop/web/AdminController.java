@@ -171,7 +171,7 @@ public class AdminController {
 				MultipartRequest multi = new MultipartRequest(
 				request, savePath, 5*1024*1024, "UTF-8", new DefaultFileRenamePolicy()	
 			);
-			filename = multi.getFilesystemName("image");
+			filename = multi.getFilesystemName("image1");
 		}catch(IOException e) {
 			e.printStackTrace();
 		}
@@ -225,6 +225,43 @@ public class AdminController {
 			model.addAttribute("kind", kindList[index]);
 			model.addAttribute("productVO", list.get(0));
 			return "admin/product/productDetail";
+		}
+	}
+	
+	@RequestMapping(value="productUpdateForm.do")
+	public String productUpdateForm(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		HashMap<String, Object> loginAdmin = (HashMap<String, Object>)session.getAttribute("loginAdmin");
+		if(loginAdmin == null)
+			return "redirect:/admin.do";
+		else {
+			int pseq = Integer.parseInt(request.getParameter("pseq"));
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("ref_cursor", null);
+			paramMap.put("pseq", pseq);
+			
+			as.getProductDetail(paramMap);
+			
+			ArrayList<HashMap<String, Object>> list = (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor");
+			HashMap<String, Object> pDetail = list.get(0);
+			
+			String[] kind = {"Heels", "Boots", "Sandals", "Sneakers", "Sleeper", "On sale"};
+			
+			model.addAttribute("kindList", kind);
+			model.addAttribute("productVO", pDetail);
+			return "admin/product/productUpdate";
+		}
+	}
+	
+	@RequestMapping(value="productUpdate.do")
+	public String productUpdate(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		HashMap<String, Object> loginAdmin = (HashMap<String, Object>)session.getAttribute("loginAdmin");
+		if(loginAdmin == null)
+			return "redirect:/admin.do";
+		else {
+			
+			return "";
 		}
 	}
 }

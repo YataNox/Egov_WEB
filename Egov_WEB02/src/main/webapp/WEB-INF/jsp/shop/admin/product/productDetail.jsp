@@ -25,7 +25,9 @@
 		<tr>
 			<th>상품이미지</th>
 			<td colspan="5" align="center">
-				<img src="product_images/${productVO.IMAGE}" width="200px">
+				<c:if test="${not empty productVO.IMAGE}">
+					<img src="product_images/${productVO.IMAGE}" width="200px">
+				</c:if>
 			</td>
 		</tr>
 	</table>

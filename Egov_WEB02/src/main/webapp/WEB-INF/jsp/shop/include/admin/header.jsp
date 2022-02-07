@@ -33,9 +33,9 @@ $(function(){
 	            $("#filename").empty();
 	            // $("#filename").append("<div>" + data.FILENAME + "</div>");
 	            $("#filename").append(
-	            	"<img src=\"<c:url value='/product_images/" + data.IMG + "'/>\" width='100' height='100'/>"
+	            	"<img src=\"<c:url value='/product_images/" + data.IMG + "'/>\" width='200'/>"
 	           	);
-	            $("#image").val(data.IMG);
+	           	document.frm.image.value=data.IMG;
             }
          },
          error:function(){

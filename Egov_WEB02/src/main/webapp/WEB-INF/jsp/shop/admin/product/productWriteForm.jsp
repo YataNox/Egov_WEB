@@ -55,7 +55,7 @@
 	</form>
 	<div style="position: relative; top: -80px; left: -95px; width: 300px; margin: 0 auto;">
 		<form name="formm" id="fileupForm" method="post" enctype="multipart/form-data" style="float: left;">
-			<input type="file" name="image">
+			<input type="file" name="image1">
 			<input type="button" id="myButton" value="추가">
 		</form>
 	</div>
