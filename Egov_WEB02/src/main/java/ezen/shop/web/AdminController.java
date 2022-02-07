@@ -260,8 +260,25 @@ public class AdminController {
 		if(loginAdmin == null)
 			return "redirect:/admin.do";
 		else {
+			int pseq = Integer.parseInt(request.getParameter("pseq"));
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("pseq", pseq);
+			paramMap.put("kind", request.getParameter("kind"));
+			paramMap.put("name", request.getParameter("name"));
+			paramMap.put("price1", request.getParameter("price1"));
+			paramMap.put("price2", request.getParameter("price2"));
+			paramMap.put("price3", request.getParameter("price3"));
+			paramMap.put("content", request.getParameter("content"));
+			if(request.getParameter("image") == null) {
+				paramMap.put("imgfilename", request.getParameter("oldimage"));
+			}else {
+				paramMap.put("imgfilename", request.getParameter("image"));
+			}
 			
-			return "";
+			as.updateProduct(paramMap);
+			
+			model.addAttribute("pseq", pseq);
+			return "redirect:/adminProductDetail.do";
 		}
 	}
 }
