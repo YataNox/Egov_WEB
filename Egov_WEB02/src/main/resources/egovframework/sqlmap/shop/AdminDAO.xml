@@ -25,4 +25,10 @@
 			#{cnt, mode=OUT, jdbcType=INTEGER}
 		)
 	</select>
+	
+	<insert id="insertProduct" statementType="CALLABLE" parameterType="java.util.HashMap">
+		CALL insertProduct(
+			#{kind}, #{name}, #{price1}, #{price2}, #{price3}, #{content}, #{imgfilename}
+		)
+	</insert>
 </mapper>

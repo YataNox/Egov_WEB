@@ -150,6 +150,9 @@ public class AdminController {
 		if(loginAdmin == null)
 			return "redirect:/admin.do";
 		else {
+			String[] kind = {"Heels", "Boots", "Sandals", "Sneakers", "Sleeper", "On sale"};
+			
+			model.addAttribute("kindList", kind);
 			return "admin/product/productWriteForm";
 		}
 	}
@@ -177,5 +180,27 @@ public class AdminController {
 		resultMap.put("IMG", filename);
 		resultMap.put("FILENAME", filename);
 		return resultMap;
+	}
+	
+	@RequestMapping(value="productWrite.do", method = RequestMethod.POST)
+	public String productWrite(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		HashMap<String, Object> loginAdmin = (HashMap<String, Object>)session.getAttribute("loginAdmin");
+		if(loginAdmin == null)
+			return "redirect:/admin.do";
+		else {
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("kind", request.getParameter("kind"));
+			paramMap.put("name", request.getParameter("name"));
+			paramMap.put("price1", request.getParameter("price1"));
+			paramMap.put("price2", request.getParameter("price2"));
+			paramMap.put("price3", request.getParameter("price3"));
+			paramMap.put("content", request.getParameter("content"));
+			paramMap.put("imgfilename", request.getParameter("image"));
+			
+			as.insertProduct(paramMap);
+			
+			return "redirect:/productList.do";
+		}
 	}
 }

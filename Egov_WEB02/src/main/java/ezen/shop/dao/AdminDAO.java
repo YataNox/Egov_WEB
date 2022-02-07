@@ -13,4 +13,6 @@ public interface AdminDAO {
 
 	void getAllCount(HashMap<String, Object> paramMap);
 
+	void insertProduct(HashMap<String, Object> paramMap);
+
 }

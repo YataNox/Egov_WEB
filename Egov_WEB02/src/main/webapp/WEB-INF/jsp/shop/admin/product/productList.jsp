@@ -31,7 +31,7 @@
 				</td>
 				<td><fmt:formatNumber value="${productVO.PRICE1}"/></td>
 				<td><fmt:formatNumber value="${productVO.PRICE2}"/></td>
-				<td><fmt:formatDate value="${productVO.INDATG}"/></td>
+				<td><fmt:formatDate value="${productVO.INDATE}"/></td>
 				<td>
 					<c:choose>
 						<c:when test='${productVO.USEYN=="n" }'></c:when>

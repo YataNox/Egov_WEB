@@ -9,5 +9,7 @@ public interface AdminService {
 	void getProductList(HashMap<String, Object> paramMap);
 
 	void getAllCount(HashMap<String, Object> paramMap);
+
+	void insertProduct(HashMap<String, Object> paramMap);
 	
 }
