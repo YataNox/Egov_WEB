@@ -41,11 +41,8 @@
 			<tr>
 				<th>상품이미지</th>
 				<td colspan="5" width="343">
-					<form name="formm" id="fileupForm" method="post" enctype="multipart/form-data">
-						<input type="file" name="image">
-						<input type="button" id="myButton" value="추가">
-					</form>
-					<div id="filename" style="float: left;"></div>
+					<div id="filename"></div>
+					<input type="text" id="image" name="image">
 					<!-- <img alt="사진을 등록해주세요." width="80" id="updateimage"><br>
 					<input type="text" name="image" disabled>
 					<input type="hidden" name="imgfilename">
@@ -55,6 +52,10 @@
 		</table>
 		<input type="button" class="btn" value="등록" onclick="go_save()">
 		<input type="button" class="btn" value="목록" onclick="go_mov()">
+	</form>
+	<form name="formm" id="fileupForm" method="post" enctype="multipart/form-data" style="float: left;">
+		<input type="file" name="image">
+		<input type="button" id="myButton" value="추가">
 	</form>
 </article>
 

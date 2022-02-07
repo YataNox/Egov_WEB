@@ -1,16 +1,24 @@
 package ezen.shop.web;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import ezen.shop.dto.Paging;
 import ezen.shop.service.AdminService;
@@ -146,13 +154,28 @@ public class AdminController {
 		}
 	}
 	
+	@Autowired
+	ServletContext context;
+	
 	@RequestMapping(value="fileup.do")
 	@ResponseBody
 	public HashMap<String, Object> fileup(HttpServletRequest request, Model model) {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		
+		String savePath = context.getRealPath("/product_images");
+		String filename="";
+		try {
+				MultipartRequest multi = new MultipartRequest(
+				request, savePath, 5*1024*1024, "UTF-8", new DefaultFileRenamePolicy()	
+			);
+			filename = multi.getFilesystemName("image");
+		}catch(IOException e) {
+			e.printStackTrace();
+		}
+		
 		resultMap.put("STATUS", 1);
-		resultMap.put("FILENAME", "abc.txt");
+		resultMap.put("IMG", filename);
+		resultMap.put("FILENAME", filename);
 		return resultMap;
 	}
 }

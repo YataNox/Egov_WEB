@@ -29,9 +29,13 @@ $(function(){
          
          success : function(data){
             if( data.STATUS == 1){
-            //   alert("성공");
-            $("#filename").empty();
-            $("#filename").append(data.FILENAME);
+	            //   alert("성공");
+	            $("#filename").empty();
+	            // $("#filename").append("<div>" + data.FILENAME + "</div>");
+	            $("#filename").append(
+	            	"<img src=\"<c:url value='/product_images/" + data.IMG + "'/>\" width='100' height='100'/>"
+	           	);
+	            $("#image").val(data.IMG);
             }
          },
          error:function(){
