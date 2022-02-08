@@ -17,7 +17,7 @@
    <div stype="width:100%, margin:0 auto;">
    <h2> New Item</h2><br/>
       <c:forEach items="${newList }"  var="productVO">
-        <div id="item"><a href="productDetail.do?pseq=${productVO.PSEQ}">
+        <div class="item"><a href="productDetail.do?pseq=${productVO.PSEQ}">
          <img src="<c:url value='/product_images/${productVO.IMAGE}' />"  />
             <br>${productVO.NAME}<br>${productVO.PRICE2}</a>
         </div>
@@ -28,7 +28,7 @@
    <div stype="width:100%, margin:0 auto;">
    <h2> Best Item</h2><br/>       
         <c:forEach items="${bestList}"  var="productVO">
-          <div id="item"><a href="productDetail.do?pseq=${productVO.PSEQ}">
+          <div class="item"><a href="productDetail.do?pseq=${productVO.PSEQ}">
          <img src="<c:url value='/product_images/${productVO.IMAGE}' />" />
            <br>${productVO.NAME}<br>${productVO.PRICE2}</a>
         </div>
