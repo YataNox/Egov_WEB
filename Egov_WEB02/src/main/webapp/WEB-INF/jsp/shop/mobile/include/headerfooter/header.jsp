@@ -36,11 +36,11 @@
 				<ul>
 					<li><span style="color:yellow;">
 						${loginUser.id}</span>
-						<a href="mmemberEditForm"> · 정보수정</a>
-						<a href="mlogout"> · Logout</a></li>
-					<li><a href="mcartList">Cart</a></li>
-					<li><a href="mmyPage">My Page</a></li>
-			    	<li ><a href="mqnaList">Q&amp;A</a></li>
+						<a href="mmemberEditForm.do"> · 정보수정</a>
+						<a href="mlogout.do"> · Logout</a></li>
+					<li><a href="mcartList.do">Cart</a></li>
+					<li><a href="mmyPage.do">My Page</a></li>
+			    	<li ><a href="mqnaList.do">Q&amp;A</a></li>
 			    </ul>
 			</nav>
 		</c:otherwise>

@@ -5,12 +5,12 @@
 <div id="sub_img"><img src="<c:url value='/images/product/sub_img.jpg' />"/></div>
 <nav id="catagory_menu"> <!-- catagory menu -->
    <ul>
-      <li><a href="catagory.do?kind=1">Heels</a></li>
-      <li><a href="catagory.do?kind=2">Boots</a></li>
-      <li><a href="catagory.do?kind=3">Sandals</a></li>
-      <li><a href="catagory.do?kind=4">Sneakers</a></li>
-      <li><a href="catagory.do?kind=5">Sleeper</a></li>
-      <li><a href="catagory.do?kind=6">On Sale</a></li>
+      <li><a href="category.do?kind=1">Heels</a></li>
+      <li><a href="category.do?kind=2">Boots</a></li>
+      <li><a href="category.do?kind=3">Sandals</a></li>
+      <li><a href="category.do?kind=4">Sneakers</a></li>
+      <li><a href="category.do?kind=5">Sleeper</a></li>
+      <li><a href="category.do?kind=6">On Sale</a></li>
    </ul>
 </nav><br/><br/><fmt:setLocale value="ko_KR"/>
 <div id="front">
