@@ -281,4 +281,9 @@ public class AdminController {
 			return "redirect:/adminProductDetail.do";
 		}
 	}
+	
+	@RequestMapping(value="/start.do")
+	public String start(HttpServletRequest request, Model model) {
+		return "start";
+	}
 }
