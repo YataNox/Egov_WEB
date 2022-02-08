@@ -282,7 +282,7 @@ public class AdminController {
 		}
 	}
 	
-	@RequestMapping(value="/start.do")
+	@RequestMapping(value="start.do")
 	public String start(HttpServletRequest request, Model model) {
 		return "start";
 	}
